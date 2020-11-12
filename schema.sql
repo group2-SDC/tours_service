@@ -1,6 +1,6 @@
-CREATE DATABASE tripAdvisor;
+CREATE DATABASE tripTours;
 
-USE tripAdvisor;
+USE tripTours;
 
 CREATE TABLE listings (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +22,6 @@ CREATE TABLE tours (
   hours INT,
   minutes INT,
   base_price DECIMAL(10, 2),
-  langs_offered JSON,
   free_cancel INT,
   evoucher_accepted INT,
   instant_confirm INT,
@@ -32,10 +31,22 @@ CREATE TABLE tours (
   bookings INT,
   favorite INT,
   photo VARCHAR(500),
-  listing_id INT,
-  category_id INT,
-  FOREIGN KEY (listing_id) REFERENCES listings(id),
-  FOREIGN KEY (category_id) REFERENCES categories(id)
+  listings_id INT,
+  categories_id INT,
+  FOREIGN KEY (listings_id) REFERENCES listings(id),
+  FOREIGN KEY (categories_id) REFERENCES categories(id)
+);
+
+CREATE TABLE languages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  language VARCHAR(100)
+);
+
+CREATE TABLE tours_languages (
+  tours_id INT,
+  languages_id INT,
+  FOREIGN KEY (tours_id) REFERENCES tours(id),
+  FOREIGN KEY (languages_id) REFERENCES languages(id)
 );
 
 
