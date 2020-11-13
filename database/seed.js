@@ -71,7 +71,7 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
   return Promise.all(promises);
 }
 
-generatePhotos = () => {
+const generatePhotos = () => {
   db.query('SELECT * FROM listings', (err, listings) => {
     if (err) {
       console.log(err);
@@ -79,6 +79,23 @@ generatePhotos = () => {
       listings.forEach(listing => {
         const sqlString = 'UPDATE tours SET photo = ? WHERE listings_id = ?';
         insert(sqlString, [`https://loremflickr.com/320/240/${listing.name}`, listing.id]);
+      });
+    }
+  });
+};
+
+const populateToursAndLangsTable = (numberOfLanguages) => {
+  db.query('SELECT id from tours', (err, tours) => {
+    if (err) {
+      console.log(err);
+    } else {
+      tours.forEach(tour => {
+        const numOfLangs = Math.floor(Math.random() * 5 + 1);
+        for (let i = 0; i < numOfLangs; i++) {
+          const sqlString = 'INSERT INTO tours_languages (tours_id, languages_id) VALUES (?, ?)';
+          const languageId = Math.floor(Math.random() * numberOfLanguages + 1);
+          insert(sqlString, [tour.id, languageId]);
+        }
       });
     }
   });
@@ -97,5 +114,8 @@ generateListings(100)
   })
   .then(() => {
     generatePhotos();
+  })
+  .then(() => {
+    populateToursAndLangsTable(20);
   })
   .catch(err => console.log(err));
