@@ -101,21 +101,25 @@ const populateToursAndLangsTable = (numberOfLanguages) => {
   });
 };
 
+const listings = 100;
+const categories = 20;
+const languages = 20;
+const tours = 4000;
 
-generateListings(100)
+generateListings(listings)
   .then(() => {
-    generateCategories(20);
+    generateCategories(categories);
   })
   .then(() => {
-    generateLanguages(20);
+    generateLanguages(languages);
   })
   .then(() => {
-    generateTours(4000, 100, 20);
+    generateTours(tours, listings, categories);
   })
   .then(() => {
     generatePhotos();
   })
   .then(() => {
-    populateToursAndLangsTable(20);
+    populateToursAndLangsTable(languages);
   })
   .catch(err => console.log(err));
