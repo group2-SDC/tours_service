@@ -7,12 +7,12 @@ app.use(express.static('public'));
 
 app.get('/api/listings/:id/tours/categories', (req, res) => {
   const listingId = req.params.id;
-  const sqlString = 'SELECT DISTINCT categories.id, categories.name, categories.description, tours.photo FROM categories, tours WHERE categories.id = tours.categories_id AND tours.listings_id = ?';
-  db.query(sqlString, [listingId], (err, results) => {
+  const sqlCount = 'SELECT tours.categories_id, COUNT(tours.categories_id), categories.* from tours, categories WHERE tours.categories_id = categories.id AND listings_id = ? GROUP BY categories_id ORDER BY COUNT(tours.categories_id) DESC';
+  db.query(sqlCount, [listingId], (err, categoriesCount) => {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.send(results);
+      res.send(categoriesCount);
     }
   });
 });
