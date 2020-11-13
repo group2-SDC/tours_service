@@ -1,44 +1,52 @@
 const faker = require('faker');
 const db = require('./index.js');
+const Promise = require('bluebird');
 
 const insert = (sqlString, values) => {
-  db.query(sqlString, values, (err, results) => {
-    if (err) {
-      console.log(err);
-    }
+  return new Promise((resolve, reject) => {
+    db.query(sqlString, values, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(err);
+      }
+    });
   });
 };
 
 const generateListings = (number) => {
+  const promises = [];
   for (let i = 0; i < number; i++) {
     const name = faker.address.country();
     const sqlString = 'INSERT INTO listings (name) VALUES (?)';
-    insert(sqlString, [name]);
+    promises.push(insert(sqlString, [name]));
   }
+  return Promise.all(promises);
 };
 
 const generateCategories = (number) => {
+  const promises = [];
   for (let i = 0; i < number; i++) {
     const name = faker.commerce.department();
     const description = faker.company.catchPhrase();
     const sqlString = 'INSERT INTO categories (name, description) VALUES (?, ?)';
-    insert(sqlString, [name, description]);
+    promises.push(insert(sqlString, [name, description]));
   }
+  return Promise.all(promises);
 };
 
 const generateLanguages = (number) => {
+  const promises = [];
   for (let i = 0; i < number; i++) {
     const language = faker.address.country();
     const sqlString = 'INSERT INTO languages (language) VALUES (?)';
-    insert(sqlString, [language]);
+    promises.push(insert(sqlString, [language]));
   }
+  return Promise.all(promises);
 };
 
-// generateListings(100);
-// generateCategories(15);
-// generateLanguages(20);
-
-const generateTours = (number) => {
+const generateTours = (number, numberOfListings, numberOfCategories) => {
+  const promises = [];
   for (let i = 0; i < number; i++) {
     const name = faker.commerce.productName();
     const company = faker.company.companyName();
@@ -55,12 +63,25 @@ const generateTours = (number) => {
     const avg_rating = Math.random() * 5;
     const bookings = faker.random.number();
     const favorite = 0;
-    const sqlString = 'INSERT INTO tours (name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    insert(sqlString, [name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite]);
+    const listings_id = Math.floor(Math.random() * numberOfListings + 1);
+    const categories_id = Math.floor(Math.random() * numberOfCategories + 1);
+    const sqlString = 'INSERT INTO tours (name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, listings_id, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    promises.push(insert(sqlString, [name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, listings_id, categories_id]));
   }
+  return Promise.all(promises);
 }
 
-generateTours(10);
+
+generateListings(100)
+  .then(() => {
+    generateCategories(20);
+  })
+  .then(() => {
+    generateLanguages(20);
+  })
+  .then(() => {
+    generateTours(4000, 100, 20);
+  })
 
 
 // generate xx photos and insert into photo column of tours table
