@@ -71,6 +71,19 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
   return Promise.all(promises);
 }
 
+generatePhotos = () => {
+  db.query('SELECT * FROM listings', (err, listings) => {
+    if (err) {
+      console.log(err);
+    } else {
+      listings.forEach(listing => {
+        const sqlString = 'UPDATE tours SET photo = ? WHERE listings_id = ?';
+        insert(sqlString, [`https://loremflickr.com/320/240/${listing.name}`, listing.id]);
+      });
+    }
+  });
+};
+
 
 generateListings(100)
   .then(() => {
@@ -82,6 +95,7 @@ generateListings(100)
   .then(() => {
     generateTours(4000, 100, 20);
   })
-
-
-// generate xx photos and insert into photo column of tours table
+  .then(() => {
+    generatePhotos();
+  })
+  .catch(err => console.log(err));
