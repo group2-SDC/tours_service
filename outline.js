@@ -1,6 +1,6 @@
 // Outline of client components
 
-// Experiences
+// App
   // props:
     // listingId
   // state:
