@@ -25,7 +25,7 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
               resolve(category);
             }
           });
-        })
+        });
       });
       Promise.all(categoryPromises)
         .then(categories => res.send(categories))
@@ -39,14 +39,31 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
 
 // Retrieve the top 8 "recommended" tours, of any category (tours with the most number of bookings)
 app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
-  // missing logic for getting languages
   const listingId = req.params.id;
   const sqlString = 'SELECT tours.id AS id, tours.name AS name, tours.*, categories.name AS categories_name FROM tours, categories WHERE tours.listings_id = ? AND categories.id = tours.categories_id ORDER BY tours.bookings DESC LIMIT 8';
-  db.query(sqlString, [listingId], (err, results) => {
+  db.query(sqlString, [listingId], (err, tours) => {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.send(results);
+      const tourPromises = tours.map(tour => {
+        return new Promise((resolve, reject) => {
+          const sqlLangs = 'SELECT DISTINCT languages.* from tours_languages, languages WHERE tours_languages.languages_id = languages.id AND tours_languages.tours_id = ?';
+          db.query(sqlLangs, [tour.id], (err, langs) => {
+            if (err) {
+              reject(err);
+            } else {
+              tour.langs_offered = langs;
+              resolve(tour);
+            }
+          });
+        });
+      });
+      Promise.all(tourPromises)
+        .then(tours => res.send(tours))
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(404);
+        });
     }
   });
 });
