@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const db = require('../database/index.js');
 const port = 3000;
+const Promise = require('bluebird');
 
 app.use(express.static('public'));
 
@@ -9,55 +10,92 @@ app.use(express.static('public'));
 app.get('/api/listings/:id/tours/categories', (req, res) => {
   const listingId = req.params.id;
   const sqlCount = 'SELECT COUNT(tours.categories_id) AS tourCount, categories.* from tours, categories WHERE tours.categories_id = categories.id AND listings_id = ? GROUP BY categories_id ORDER BY COUNT(tours.categories_id) DESC';
-  db.query(sqlCount, [listingId], (err, categoriesCount) => {
+  db.query(sqlCount, [listingId], (err, categories) => {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.send(categoriesCount);
-    }
-  });
-});
-
-// Retrieve the top photo for a tour category (photo for tour with most number of bookings)
-app.get('/api/listings/:id/tours/categories/:categoryId/photo', (req, res) => {
-  const listingId = req.params.id;
-  const categoryId = req.params.categoryId;
-  const sqlString = 'SELECT photo, bookings FROM tours WHERE listings_id = ? AND categories_id = ? ORDER BY bookings DESC LIMIT 1';
-
-  db.query(sqlString, [listingId, categoryId], (err, results) => {
-    if (err) {
-      res.sendStatus(404);
-    } else {
-      res.send(results);
+      const categoryPromises = categories.map(category => {
+        return new Promise((resolve, reject) => {
+          const sqlPhoto = 'SELECT photo, bookings FROM tours WHERE listings_id = ? AND categories_id = ? ORDER BY bookings DESC LIMIT 1';
+          db.query(sqlPhoto, [listingId, category.id], (err, photo) => {
+            if (err) {
+              reject(err);
+            } else {
+              category.photo = photo[0].photo;
+              resolve(category);
+            }
+          });
+        });
+      });
+      Promise.all(categoryPromises)
+        .then(categories => res.send(categories))
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(404);
+        });
     }
   });
 });
 
 // Retrieve the top 8 "recommended" tours, of any category (tours with the most number of bookings)
 app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
-  // missing logic for getting languages
   const listingId = req.params.id;
   const sqlString = 'SELECT tours.id AS id, tours.name AS name, tours.*, categories.name AS categories_name FROM tours, categories WHERE tours.listings_id = ? AND categories.id = tours.categories_id ORDER BY tours.bookings DESC LIMIT 8';
-  db.query(sqlString, [listingId], (err, results) => {
+  db.query(sqlString, [listingId], (err, tours) => {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.send(results);
+      const tourPromises = tours.map(tour => {
+        return new Promise((resolve, reject) => {
+          const sqlLangs = 'SELECT DISTINCT languages.* from tours_languages, languages WHERE tours_languages.languages_id = languages.id AND tours_languages.tours_id = ?';
+          db.query(sqlLangs, [tour.id], (err, langs) => {
+            if (err) {
+              reject(err);
+            } else {
+              tour.langs_offered = langs;
+              resolve(tour);
+            }
+          });
+        });
+      });
+      Promise.all(tourPromises)
+        .then(tours => res.send(tours))
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(404);
+        });
     }
   });
 });
 
 // Retrieve the top 8 tours per category (in order of number of bookings)
 app.get('/api/listings/:id/tours/categories/:categoryId', (req, res) => {
-  // missing logic for getting languages
   const listingId = req.params.id;
   const categoryId = req.params.categoryId;
   const sqlString = 'SELECT tours.id AS id, tours.name AS name, tours.*, categories.name AS categories_name FROM tours, categories WHERE tours.listings_id = ? AND categories.id = tours.categories_id AND categories.id = ? ORDER BY tours.bookings DESC LIMIT 8';
-  db.query(sqlString, [listingId, categoryId], (err, results) => {
+  db.query(sqlString, [listingId, categoryId], (err, tours) => {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.send(results);
+      const tourPromises = tours.map(tour => {
+        return new Promise((resolve, reject) => {
+          const sqlLangs = 'SELECT DISTINCT languages.* from tours_languages, languages WHERE tours_languages.languages_id = languages.id AND tours_languages.tours_id = ?';
+          db.query(sqlLangs, [tour.id], (err, langs) => {
+            if (err) {
+              reject(err);
+            } else {
+              tour.langs_offered = langs;
+              resolve(tour);
+            }
+          });
+        });
+      });
+      Promise.all(tourPromises)
+        .then(tours => res.send(tours))
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(404);
+        });
     }
   });
 });
