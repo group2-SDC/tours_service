@@ -15,7 +15,18 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
       res.send(results);
     }
   });
+});
 
+app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
+  const listingId = req.params.id;
+  const sqlString = 'SELECT tours.id AS tours_id, tours.name AS tours_name, tours.* from tours INNER JOIN listings ON tours.listings_id = listings.id WHERE listings.id = ? ORDER BY tours.bookings DESC LIMIT 8';
+  db.query(sqlString, [listingId], (err, results) => {
+    if (err) {
+      res.sendStatus(404);
+    } else {
+      res.send(results);
+    }
+  });
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
