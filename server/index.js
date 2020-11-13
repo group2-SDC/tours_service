@@ -14,6 +14,7 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
     if (err) {
       res.sendStatus(404);
     } else {
+      // For each category, select the photo associated with the tour with most number of bookings in that category, and add to category obj being sent back to client
       const categoryPromises = categories.map(category => {
         return new Promise((resolve, reject) => {
           const sqlPhoto = 'SELECT photo, bookings FROM tours WHERE listings_id = ? AND categories_id = ? ORDER BY bookings DESC LIMIT 1';
@@ -27,6 +28,7 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
           });
         });
       });
+      // Once all of the async calls to the database to retrieve the photo for each category are done, send categories to client
       Promise.all(categoryPromises)
         .then(categories => res.send(categories))
         .catch(err => {
@@ -45,6 +47,7 @@ app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
     if (err) {
       res.sendStatus(404);
     } else {
+      // For each tour, query the database to determine which languages are offered for that tour, and add those languages to the tour object
       const tourPromises = tours.map(tour => {
         return new Promise((resolve, reject) => {
           const sqlLangs = 'SELECT DISTINCT languages.* from tours_languages, languages WHERE tours_languages.languages_id = languages.id AND tours_languages.tours_id = ?';
@@ -58,6 +61,7 @@ app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
           });
         });
       });
+      // Once all of the async calls to the database to retrieve the languages for each tour are done, send tours to client
       Promise.all(tourPromises)
         .then(tours => res.send(tours))
         .catch(err => {
@@ -77,6 +81,7 @@ app.get('/api/listings/:id/tours/categories/:categoryId', (req, res) => {
     if (err) {
       res.sendStatus(404);
     } else {
+      // For each tour, query the database to determine which languages are offered for that tour, and add those languages to the tour object
       const tourPromises = tours.map(tour => {
         return new Promise((resolve, reject) => {
           const sqlLangs = 'SELECT DISTINCT languages.* from tours_languages, languages WHERE tours_languages.languages_id = languages.id AND tours_languages.tours_id = ?';
@@ -90,6 +95,7 @@ app.get('/api/listings/:id/tours/categories/:categoryId', (req, res) => {
           });
         });
       });
+      // Once all of the async calls to the database to retrieve the languages for each tour are done, send tours to client
       Promise.all(tourPromises)
         .then(tours => res.send(tours))
         .catch(err => {

@@ -102,9 +102,9 @@ const populateToursAndLangsTable = (numberOfLanguages) => {
 };
 
 const listings = 100;
-const categories = 20;
+const categories = 15;
 const languages = 20;
-const tours = 4000;
+const tours = 5000;
 
 generateListings(listings)
   .then(() => {
