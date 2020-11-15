@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import * as Promise from 'bluebird';
+import {Promise} from 'bluebird';
 
 class App extends React.Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Testing React!
+        <h1>Get the full experience and book a tour</h1>
       </div>
     );
   }
