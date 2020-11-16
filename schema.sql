@@ -9,8 +9,8 @@ CREATE TABLE listings (
 
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(250),
-  description VARCHAR(500)
+  name VARCHAR(100),
+  description VARCHAR(100)
 );
 
 CREATE TABLE tours (
