@@ -8,6 +8,7 @@ const StyledTab = styled.div`
   padding: 20px;
   border: 1px solid lightgray;
   border-right-width: ${props => props.name !== 'Browse' ? 0 : 1};
+  border-bottom-width: ${props => props.selected ? 0: 1};
   text-align: center;
   flex: 1 1 16.66%;
 `;
@@ -22,7 +23,7 @@ const Tab = (props) => {
   }
 
   return (
-    <StyledTab name={props.name} onClick={handleClick}>
+    <StyledTab selected={props.selected} name={props.name} onClick={handleClick}>
         {props.name !== 'Browse' ? 
         <span>
            <StyledSpan>{props.name}</StyledSpan> <br />
