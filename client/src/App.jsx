@@ -36,7 +36,7 @@ class App extends React.Component {
             name: 'Recommended',
             description: 'Our most popular tours and activities',
             displayMax: 4,
-            tours: recommendedTours.data
+            items: recommendedTours.data
           }
           resolve(recTab);
         })
@@ -49,7 +49,7 @@ class App extends React.Component {
         return new Promise((resolve, reject) => {
           this.fetchToursByCategory(this.props.listingId, category.id)
             .then(toursForCategory => {
-              category.tours = toursForCategory.data;
+              category.items = toursForCategory.data;
               category.displayMax = 4;
               resolve(category);
             })
@@ -70,7 +70,7 @@ class App extends React.Component {
       .then(() => this.fetchCategories(this.props.listingId))
       .then(categories => {
         const topCategories = categories.data.slice(0, 4);
-        browseTab.categories = categories.data.slice(4);
+        browseTab.items = categories.data.slice(4);
         return this.createCategoryTabs(topCategories);
       })
       .then(categoryTabs => {
