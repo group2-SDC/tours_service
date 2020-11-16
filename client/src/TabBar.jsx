@@ -5,7 +5,7 @@ const TabBar = (props) => (
   <table>
     <tbody>
       <tr>
-        {props.tabs.map((tab, i) => <Tab key={i} name={tab.name} description={tab.description || null} updateView={props.updateView}/>)}
+        {props.tabs.map((tab, i) => <Tab key={i} tabNumber={i} name={tab.name} description={tab.description || null} updateView={props.updateView}/>)}
       </tr>
     </tbody>
   </table>

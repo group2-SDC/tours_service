@@ -88,7 +88,9 @@ class App extends React.Component {
   }
 
   updateView(newTab) {
-    console.log(newTab);
+    this.setState({
+      view: newTab
+    });
   }
 
   render() {
