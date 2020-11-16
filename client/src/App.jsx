@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {Promise} from 'bluebird';
 
+import TabBar from './TabBar.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,8 @@ class App extends React.Component {
       view: 0,
       tabs: []
     };
+
+    this.updateView = this.updateView.bind(this);
   }
 
   componentDidMount() {
@@ -83,10 +87,15 @@ class App extends React.Component {
       .catch(err => console.log(err));     
   }
 
+  updateView(newTab) {
+    console.log(newTab);
+  }
+
   render() {
     return (
       <div>
         <h1>Get the full experience and book a tour</h1>
+        <TabBar tabs={this.state.tabs} updateView={this.updateView}/>
       </div>
     );
   }
