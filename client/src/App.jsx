@@ -1,8 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import {Promise} from 'bluebird';
+import {createGlobalStyle} from 'styled-components';
 
 import TabBar from './TabBar.jsx';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+  }
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -96,10 +104,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <h1>Get the full experience and book a tour</h1>
-        <table>
-          <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
-        </table>
+        <p></p>
+        <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
       </div>
     );
   }

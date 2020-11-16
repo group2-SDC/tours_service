@@ -1,4 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledTab = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid lightgray;
+  border-right-width: ${props => props.name !== 'Browse' ? 0 : 1};
+  text-align: center;
+  flex: 1 1 16.66%;
+`;
+
+const StyledSpan = styled.span`
+  font-weight: 500;
+`
 
 const Tab = (props) => {
   const handleClick = () => {
@@ -6,19 +22,20 @@ const Tab = (props) => {
   }
 
   return (
-    <td onClick={handleClick}>
+    <StyledTab name={props.name} onClick={handleClick}>
         {props.name !== 'Browse' ? 
         <span>
-           {props.name} <br />
+           <StyledSpan>{props.name}</StyledSpan> <br />
            {props.description}
         </span>
         : 
-        <span>
+        <StyledSpan>
           ... <br />
-          {props.name}
-        </span>
+          {props.name} <br />
+          <br />
+        </StyledSpan>
       }
-    </td>
+    </StyledTab>
   )
 }
 
