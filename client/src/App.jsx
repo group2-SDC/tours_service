@@ -97,7 +97,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Get the full experience and book a tour</h1>
-        <TabBar tabs={this.state.tabs} updateView={this.updateView}/>
+        <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
       </div>
     );
   }
