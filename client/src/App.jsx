@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import {Promise} from 'bluebird';
 
+import TabBar from './TabBar.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,8 @@ class App extends React.Component {
       view: 0,
       tabs: []
     };
+
+    this.updateView = this.updateView.bind(this);
   }
 
   componentDidMount() {
@@ -36,7 +40,7 @@ class App extends React.Component {
             name: 'Recommended',
             description: 'Our most popular tours and activities',
             displayMax: 4,
-            tours: recommendedTours.data
+            items: recommendedTours.data
           }
           resolve(recTab);
         })
@@ -49,7 +53,7 @@ class App extends React.Component {
         return new Promise((resolve, reject) => {
           this.fetchToursByCategory(this.props.listingId, category.id)
             .then(toursForCategory => {
-              category.tours = toursForCategory.data;
+              category.items = toursForCategory.data;
               category.displayMax = 4;
               resolve(category);
             })
@@ -70,7 +74,7 @@ class App extends React.Component {
       .then(() => this.fetchCategories(this.props.listingId))
       .then(categories => {
         const topCategories = categories.data.slice(0, 4);
-        browseTab.categories = categories.data.slice(4);
+        browseTab.items = categories.data.slice(4);
         return this.createCategoryTabs(topCategories);
       })
       .then(categoryTabs => {
@@ -83,10 +87,19 @@ class App extends React.Component {
       .catch(err => console.log(err));     
   }
 
+  updateView(newTab) {
+    this.setState({
+      view: newTab
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>Get the full experience and book a tour</h1>
+        <table>
+          <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
+        </table>
       </div>
     );
   }
