@@ -9,6 +9,7 @@ const StyledTab = styled.div`
   border: 1px solid lightgray;
   border-right-width: ${props => props.name !== 'Browse' ? 0 : 1};
   border-bottom-width: ${props => props.selected ? 0: 1};
+  border-top: ${props => props.selected ? '2px solid black' : '1px solid lightgray'};
   text-align: center;
   flex: 1 1 16.66%;
 `;

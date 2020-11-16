@@ -106,7 +106,6 @@ class App extends React.Component {
       <div>
         <GlobalStyle />
         <h1>Get the full experience and book a tour</h1>
-        <p></p>
         <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
       </div>
     );
