@@ -29,7 +29,7 @@ const StyledText = styled.span`
 
 const CategoryPreview = (props) => (
   <StyledCategoryPreview>
-    <img src={props.item.photo} width="156" height="103"/>
+    <img src={props.item.photo + `?random=${props.item.id}`}width="156" height="103"/>
     <StyledName>{props.item.name}</StyledName>
     <StyledText>{props.item.description}</StyledText>
   </StyledCategoryPreview>

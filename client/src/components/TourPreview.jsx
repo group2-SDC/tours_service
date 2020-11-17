@@ -12,7 +12,7 @@ const StyledTourPreview = styled.div`
 
 const TourPreview = (props) => (
   <StyledTourPreview>
-    <img src={props.item.photo} width="225" height="170"/>
+    <img src={props.item.photo + `?random=${props.item.id}`} width="225" height="170"/>
     {props.item.name} <br />
     {props.item.base_price} per adult
   </StyledTourPreview>
