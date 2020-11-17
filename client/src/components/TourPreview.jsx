@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
+import TourPreviewReviews from './TourPreviewReviews.jsx';
 
 const StyledTourPreview = styled.div`
   display: flex;
@@ -16,31 +17,6 @@ const TourName = styled.span`
   font-size: 16px;
   padding: 0 10px;
 `;
-
-const ReviewsContainer = styled.div`
-  display: flex;
-  padding: 5px 10px;
-  align-items: center;
-`
-
-const BubblesContainer = styled.div`
-  display: flex;
-`
-
-const RatingsBubble = styled.span`
-  display: flex;
-  border: 2px solid rgb(0, 170, 100);
-  border-radius: 50%;
-  height: 12px;
-  width: 12px;
-  background: ${props => props.status === 'half' ? 'linear-gradient(to right, #00AA6C 50%, white 50%)' : props.status === 'full' ? '#00AA6C' : 'white'};
-  margin-right: 2px;
-`
-
-const ReviewsSpan = styled.span`
-  font-size: 16px;
-  margin-left: 5px;
-`
 
 const InfoContainer = styled.div`
   display: flex;
@@ -76,35 +52,11 @@ const MoreInfoButton = styled.button`
   text-align: center;
 `;
 
-const TourPreview = (props) => {
-
-  const generateRatingBubbles = (avgRating) => {
-    const bubbles = {};
-
-    bubbles.full = Math.round(avgRating);
-    bubbles.half = Math.ceil(avgRating - bubbles.full);
-    bubbles.empty = 5 - (bubbles.full + bubbles.half);
-
-    const bubblesArray = [];
-
-    for (let key in bubbles) {
-      for (let i = 0; i < bubbles[key]; i++) {
-        bubblesArray.push(key);
-      }
-    }
-    return bubblesArray;
-  };
-
-  return (
+const TourPreview = (props) => (
     <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
       <TourPreviewImage isHovered={props.isHovered} photo={props.item.photo} id={props.item.id}/>
       <TourName>{props.item.name}</TourName>
-      <ReviewsContainer>
-        <BubblesContainer>
-          {generateRatingBubbles(props.item.avg_rating).map((bubble, i) => <RatingsBubble key={i} status={bubble}/>)}
-        </BubblesContainer>
-        <ReviewsSpan>{props.item.reviews} reviews</ReviewsSpan>
-      </ReviewsContainer>
+      <TourPreviewReviews reviews={props.item.reviews} avgRating={props.item.avg_rating}/>
       <InfoContainer>
         <PriceContainer>
           <Price>
@@ -115,7 +67,6 @@ const TourPreview = (props) => {
         <MoreInfoButton>More info</MoreInfoButton>
       </InfoContainer>
     </StyledTourPreview>
-  );
-}
+);
 
 export default TourPreview;
