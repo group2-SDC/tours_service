@@ -44,6 +44,20 @@ const TourName = styled.span`
   padding: 10px;
 `;
 
+const RatingsContainer = styled.div`
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+`
+
+const RatingsBubble = styled.span`
+  border: 2px solid rgb(0, 170, 100);
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  background: ${props => props.status === 'half' ? 'linear-gradient(to right, #00AA6C 50%, white 50%)' : props.status === 'full' ? '#00AA6C' : 'white'};
+`
+
 const InfoContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -78,24 +92,47 @@ const MoreInfoButton = styled.button`
   text-align: center;
 `;
 
-const TourPreview = (props) => (
-  <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
-    <ImageContainer photo={props.item.photo + `?random=${props.item.id}`}>
-      <ImageOverlay>
-        {props.isHovered ? <QuickViewButton>Quick View</QuickViewButton> : null}
-      </ImageOverlay>
-    </ImageContainer>
-    <TourName>{props.item.name}</TourName><br />
-    <InfoContainer>
-      <PriceContainer>
-        <Price>
-          <Bold>${props.item.base_price}</Bold>
-          <span>per adult</span>
-        </Price>
-      </PriceContainer>
-      <MoreInfoButton>More info</MoreInfoButton>
-    </InfoContainer>
-  </StyledTourPreview>
-);
+const TourPreview = (props) => {
+
+  const generateRatingBubbles = (avgRating) => {
+    const bubbles = {};
+
+    bubbles.full = Math.round(avgRating);
+    bubbles.half = Math.ceil(avgRating - bubbles.full);
+    bubbles.empty = 5 - (bubbles.full + bubbles.half);
+
+    const bubblesArray = [];
+
+    for (let key in bubbles) {
+      for (let i = 0; i < bubbles[key]; i++) {
+        bubblesArray.push(key);
+      }
+    }
+    return bubblesArray;
+  };
+
+  return (
+    <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
+      <ImageContainer photo={props.item.photo + `?random=${props.item.id}`}>
+        <ImageOverlay>
+          {props.isHovered ? <QuickViewButton>Quick View</QuickViewButton> : null}
+        </ImageOverlay>
+      </ImageContainer>
+      <TourName>{props.item.name}</TourName>
+      <RatingsContainer>
+        {generateRatingBubbles(props.item.avg_rating).map((bubble, i) => <RatingsBubble key={i} status={bubble}/>)}
+      </RatingsContainer>
+      <InfoContainer>
+        <PriceContainer>
+          <Price>
+            <Bold>${props.item.base_price}</Bold>
+            <span>per adult</span>
+          </Price>
+        </PriceContainer>
+        <MoreInfoButton>More info</MoreInfoButton>
+      </InfoContainer>
+    </StyledTourPreview>
+  );
+}
 
 export default TourPreview;
