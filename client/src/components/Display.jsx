@@ -5,8 +5,9 @@ import CategoryPreview from './CategoryPreview.jsx';
 
 const DisplayContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: left;
   border: 1px solid lightgray;
   border-top-width: 0;
   flex: 1 1 auto;
@@ -15,19 +16,41 @@ const DisplayContainer = styled.div`
 
 const DisplayRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  padding: 5px;
   align-items: center;
   flex: 1 1 auto;
 `;
+
+const SeeMoreSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  flex: 1 1 auto;
+`
 
 class Display extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      hoveredItem: null
+      hoveredItem: null,
+      showAll: false
     };
     this.toggleHover = this.toggleHover.bind(this);
+    this.handleSeeMoreClick = this.handleSeeMoreClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    // check if this is a new tab, if it is, make sure state is up-to-date with tab's showAll status
+    if (this.props.tab.name !== prevProps.tab.name) {
+      this.setState({
+        showAll: this.props.tab.showAll
+      });
+    }
   }
 
   toggleHover(index) {
@@ -36,13 +59,29 @@ class Display extends React.Component {
     });
   }
 
+  handleSeeMoreClick() {
+    this.props.showAllItems(); // this updates the showAll status for currentTab, in App state
+    this.setState({ // this update the current Display state so new items will render
+      showAll: true
+    });
+  }
+
   render() {
     return (
       <DisplayContainer>
         <DisplayRow>
-          {this.props.tab.items.slice(0, this.props.tab.displayMax).map((item, i) => this.props.tab.name !== 'Browse' ?
-            <TourPreview key={item.id} item={item} index={i} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === i}/>
+          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ?
+            <TourPreview key={item.id} item={item} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === item.id}/>
             : <CategoryPreview key={item.id} item={item}/>)}
+        </DisplayRow>
+        <DisplayRow>
+          {this.props.tab.items.length > this.props.tab.displayMax ?
+            (this.state.showAll ? 
+              this.props.tab.items.slice(this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ?
+              <TourPreview key={item.id} item={item} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === item.id}/>
+              : <CategoryPreview key={item.id} item={item}/>)
+            : <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more v</SeeMoreSpan>)
+          : null }
         </DisplayRow>
       </DisplayContainer>
     )
