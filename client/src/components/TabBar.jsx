@@ -13,7 +13,16 @@ const TabsContainer = styled.div`
 
 const TabBar = (props) => (
   <TabsContainer>
-      {props.tabs.map((tab, i) => <Tab key={i} tabNumber={i} name={tab.name} description={tab.description || null} updateView={props.updateView} selected={props.currentTab === i ? true : false}/>)}
+      {props.tabs.map((tab, i) =>
+        <Tab
+          key={i}
+          tabNumber={i}
+          name={tab.name}
+          description={tab.description || null}
+          updateView={props.updateView}
+          selected={props.currentTab === i ? true : false}
+        />
+      )}
   </TabsContainer>
 )
 

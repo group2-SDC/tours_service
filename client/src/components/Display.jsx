@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TourPreview from './TourPreview.jsx';
 import CategoryPreview from './CategoryPreview.jsx';
+import SeeMore from './SeeMore.jsx';
 
 const DisplayContainer = styled.div`
   display: flex;
@@ -21,16 +22,6 @@ const DisplayRow = styled.div`
   align-items: center;
   flex: 1 1 auto;
 `;
-
-const SeeMoreSpan = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 500;
-  padding-bottom: 10px;
-  flex: 1 1 auto;
-`
 
 class Display extends React.Component {
   constructor(props) {
@@ -70,19 +61,43 @@ class Display extends React.Component {
     return (
       <DisplayContainer>
         <DisplayRow>
-          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ?
-            <TourPreview key={item.id} item={item} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === item.id}/>
-            : <CategoryPreview key={item.id} item={item}/>)}
+          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item =>
+            this.props.tab.name !== 'Browse' ?
+              <TourPreview
+                key={item.id}
+                item={item}
+                toggleHover={this.toggleHover}
+                isHovered={this.state.hoveredItem === item.id}
+              />
+            :
+              <CategoryPreview
+                key={item.id}
+                item={item}
+              />
+          )}
         </DisplayRow>
-        <DisplayRow>
           {this.props.tab.items.length > this.props.tab.displayMax ?
-            (this.state.showAll ? 
-              this.props.tab.items.slice(this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ?
-              <TourPreview key={item.id} item={item} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === item.id}/>
-              : <CategoryPreview key={item.id} item={item}/>)
-            : <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more v</SeeMoreSpan>)
-          : null }
-        </DisplayRow>
+            this.state.showAll ? 
+            <DisplayRow>
+              {this.props.tab.items.slice(this.props.tab.displayMax).map(item =>
+                this.props.tab.name !== 'Browse' ?
+                  <TourPreview
+                    key={item.id}
+                    item={item}
+                    toggleHover={this.toggleHover}
+                    isHovered={this.state.hoveredItem === item.id}
+                  />
+                :
+                  <CategoryPreview
+                    key={item.id}
+                    item={item}/>
+              )}
+            </DisplayRow>
+            :
+            <SeeMore handleSeeMoreClick={this.handleSeeMoreClick}/>
+          :
+          null
+          }
       </DisplayContainer>
     )
   }

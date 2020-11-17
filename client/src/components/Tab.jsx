@@ -24,11 +24,15 @@ const Tab = (props) => {
   }
 
   return (
-    <StyledTab selected={props.selected} name={props.name} onClick={handleClick}>
-        {props.name !== 'Browse' ? 
+    <StyledTab
+      selected={props.selected}
+      name={props.name}
+      onClick={handleClick}
+    >
+      {props.name !== 'Browse' ? 
         <span>
-           <StyledSpan>{props.name}</StyledSpan> <br />
-           {props.description}
+          <StyledSpan>{props.name}</StyledSpan> <br />
+          {props.description}
         </span>
         : 
         <StyledSpan>
