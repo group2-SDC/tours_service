@@ -7,7 +7,7 @@
     "start": "nodemon server",
     "build": "webpack -w",
     "seed": "node database/seed.js",
-    "test": "jest"
+    "test": "jest --coverage --runInBand --detectOpenHandles"
   },
   "repository": {
     "type": "git",
