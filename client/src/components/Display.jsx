@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TourPreview from './TourPreview.jsx';
 import CategoryPreview from './CategoryPreview.jsx';
+import SeeMore from './SeeMore.jsx';
 
 const DisplayContainer = styled.div`
   display: flex;
@@ -21,16 +22,6 @@ const DisplayRow = styled.div`
   align-items: center;
   flex: 1 1 auto;
 `;
-
-const SeeMoreSpan = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 500;
-  padding-bottom: 10px;
-  flex: 1 1 auto;
-`
 
 class Display extends React.Component {
   constructor(props) {
@@ -85,10 +76,10 @@ class Display extends React.Component {
               />
           )}
         </DisplayRow>
-        <DisplayRow>
           {this.props.tab.items.length > this.props.tab.displayMax ?
             this.state.showAll ? 
-              this.props.tab.items.slice(this.props.tab.displayMax).map(item =>
+            <DisplayRow>
+              {this.props.tab.items.slice(this.props.tab.displayMax).map(item =>
                 this.props.tab.name !== 'Browse' ?
                   <TourPreview
                     key={item.id}
@@ -100,13 +91,13 @@ class Display extends React.Component {
                   <CategoryPreview
                     key={item.id}
                     item={item}/>
-              )
+              )}
+            </DisplayRow>
             :
-            <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more v</SeeMoreSpan>
+            <SeeMore handleSeeMoreClick={this.handleSeeMoreClick}/>
           :
           null
           }
-        </DisplayRow>
       </DisplayContainer>
     )
   }
