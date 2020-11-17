@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TourPreview from './TourPreview.jsx';
+import CategoryPreview from './CategoryPreview.jsx';
 
 const DisplayContainer = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const DisplayContainer = styled.div`
   border: 1px solid lightgray;
   border-top-width: 0;
   flex: 1 1 auto;
+  font-size: 14px;
 `;
 
 const DisplayRow = styled.div`
@@ -30,7 +32,7 @@ class Display extends React.Component {
     return (
       <DisplayContainer>
         <DisplayRow>
-          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item => <TourPreview key={item.id} item={item}/>)}
+          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ? <TourPreview key={item.id} item={item}/> : <CategoryPreview key={item.id} item={item}/>)}
         </DisplayRow>
       </DisplayContainer>
     )
