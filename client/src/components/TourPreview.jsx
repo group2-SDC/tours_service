@@ -20,7 +20,7 @@ const TourName = styled.span`
 `;
 
 const TourPreview = (props) => (
-    <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
+    <StyledTourPreview onMouseOver={() => props.toggleHover(props.item.id)} onMouseLeave={props.toggleHover}>
       <TourPreviewImage isHovered={props.isHovered} photo={props.item.photo} id={props.item.id}/>
       <TourName>{props.item.name}</TourName>
       <TourPreviewReviews reviews={props.item.reviews} avgRating={props.item.avg_rating}/>
