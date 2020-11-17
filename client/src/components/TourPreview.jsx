@@ -41,27 +41,38 @@ const QuickViewButton = styled.button`
 const TourName = styled.span`
   font-weight: 500;
   font-size: 16px;
-  padding: 10px;
+  padding: 0 10px;
 `;
 
-const RatingsContainer = styled.div`
+const ReviewsContainer = styled.div`
   display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px;
+  align-items: center;
+`
+
+const BubblesContainer = styled.div`
+  display: flex;
 `
 
 const RatingsBubble = styled.span`
+  display: flex;
   border: 2px solid rgb(0, 170, 100);
   border-radius: 50%;
   height: 12px;
   width: 12px;
   background: ${props => props.status === 'half' ? 'linear-gradient(to right, #00AA6C 50%, white 50%)' : props.status === 'full' ? '#00AA6C' : 'white'};
+  margin-right: 2px;
+`
+
+const ReviewsSpan = styled.span`
+  font-size: 16px;
+  margin-left: 5px;
 `
 
 const InfoContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
+  padding: 5px 10px;
 `
 
 const PriceContainer = styled.span`
@@ -119,9 +130,12 @@ const TourPreview = (props) => {
         </ImageOverlay>
       </ImageContainer>
       <TourName>{props.item.name}</TourName>
-      <RatingsContainer>
-        {generateRatingBubbles(props.item.avg_rating).map((bubble, i) => <RatingsBubble key={i} status={bubble}/>)}
-      </RatingsContainer>
+      <ReviewsContainer>
+        <BubblesContainer>
+          {generateRatingBubbles(props.item.avg_rating).map((bubble, i) => <RatingsBubble key={i} status={bubble}/>)}
+        </BubblesContainer>
+        <ReviewsSpan>{props.item.reviews} reviews</ReviewsSpan>
+      </ReviewsContainer>
       <InfoContainer>
         <PriceContainer>
           <Price>
