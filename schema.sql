@@ -9,13 +9,13 @@ CREATE TABLE listings (
 
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(250),
-  description VARCHAR(500)
+  name VARCHAR(30),
+  description VARCHAR(50)
 );
 
 CREATE TABLE tours (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(250),
+  name VARCHAR(100),
   company VARCHAR(100),
   description VARCHAR(500),
   days INT,
