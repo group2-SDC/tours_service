@@ -10,6 +10,7 @@ const SeeMoreBar = styled.div`
   padding-bottom: 10px;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 `
 
 const SeeMoreSpan = styled.span`

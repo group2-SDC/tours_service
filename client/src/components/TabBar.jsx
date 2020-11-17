@@ -8,6 +8,7 @@ const TabsContainer = styled.div`
   align-items: center;
   font-size: 14px;
   line-height: 18px;
+  cursor: pointer;
 `;
 
 

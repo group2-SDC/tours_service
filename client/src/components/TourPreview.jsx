@@ -11,6 +11,7 @@ const StyledTourPreview = styled.div`
   border: 1px solid lightgray;
   text-align: left;
   margin: 20px;
+  cursor: pointer;
 `;
 
 const TourName = styled.span`
