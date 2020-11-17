@@ -19,7 +19,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start-flex;
-  width: 1200px;
+  width: 1225px;
 `
 
 class App extends React.Component {

@@ -7,7 +7,7 @@ const DisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: left;
   border: 1px solid lightgray;
   border-top-width: 0;
   flex: 1 1 auto;
@@ -16,16 +16,20 @@ const DisplayContainer = styled.div`
 
 const DisplayRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 5px;
   align-items: center;
   flex: 1 1 auto;
 `;
 
 const SeeMoreSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 16px;
   font-weight: 500;
   padding-bottom: 10px;
+  flex: 1 1 auto;
 `
 
 
@@ -76,7 +80,7 @@ class Display extends React.Component {
               this.props.tab.items.slice(this.props.tab.displayMax).map((item, i) => this.props.tab.name !== 'Browse' ?
               <TourPreview key={item.id} item={item} index={i} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === i}/>
               : <CategoryPreview key={item.id} item={item}/>)
-            : <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more</SeeMoreSpan>)
+            : <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more v</SeeMoreSpan>)
           : null }
         </DisplayRow>
       </DisplayContainer>
