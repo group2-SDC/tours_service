@@ -32,6 +32,7 @@ class App extends React.Component {
     };
 
     this.updateView = this.updateView.bind(this);
+    this.showAllItems = this.showAllItems.bind(this);
   }
 
   componentDidMount() {
@@ -59,7 +60,8 @@ class App extends React.Component {
             name: 'Recommended',
             description: 'Our most popular tours and activities',
             displayMax: 4,
-            items: recommendedTours.data
+            items: recommendedTours.data,
+            showAll: false
           }
           resolve(recTab);
         })
@@ -74,6 +76,7 @@ class App extends React.Component {
             .then(toursForCategory => {
               category.items = toursForCategory.data;
               category.displayMax = 4;
+              category.showAll = false;
               resolve(category);
             })
             .catch(err => reject(err));
@@ -86,7 +89,8 @@ class App extends React.Component {
     const populatedTabs = [];
     const browseTab = {
       name: 'Browse',
-      displayMax: 6
+      displayMax: 6,
+      showAll: false
     };
     this.createRecommendedTab()
       .then(recTab => populatedTabs.push(recTab))
@@ -113,6 +117,14 @@ class App extends React.Component {
     });
   }
 
+  showAllItems() {
+    const updatedTabs = this.state.tabs.slice();
+    updatedTabs[this.state.view].showAll = true;
+    this.setState({
+      tabs: updatedTabs
+    });
+  }
+
   render() {
     return (
       <div>
@@ -120,7 +132,8 @@ class App extends React.Component {
         <h1>Get the full experience and book a tour</h1>
         <Container>
           <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
-          {this.state.dataLoaded ? <Display tab={this.state.tabs[this.state.view]}/> : null}
+          {this.state.dataLoaded ? <Display tab={this.state.tabs[this.state.view]} showAllItems={this.showAllItems}/>
+          : null}
         </Container>
       </div>
     );

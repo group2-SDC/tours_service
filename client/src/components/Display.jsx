@@ -28,20 +28,37 @@ const SeeMoreSpan = styled.span`
   padding-bottom: 10px;
 `
 
+
 class Display extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      showMoreItems: false,
-      hoveredItem: null
+      hoveredItem: null,
+      showAll: false
     };
     this.toggleHover = this.toggleHover.bind(this);
+    this.handleSeeMoreClick = this.handleSeeMoreClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.tab.name !== prevProps.tab.name) {
+      this.setState({
+        showAll: this.props.tab.showAll
+      });
+    }
   }
 
   toggleHover(index) {
     this.setState({
       hoveredItem: index >= 0 ? index : null
+    });
+  }
+
+  handleSeeMoreClick() {
+    this.props.showAllItems(); //update state for that tab
+    this.setState({
+      showAll: true
     });
   }
 
@@ -55,11 +72,11 @@ class Display extends React.Component {
         </DisplayRow>
         <DisplayRow>
           {this.props.tab.items.length > this.props.tab.displayMax ?
-            (this.state.showMoreItems ? 
+            (this.state.showAll ? 
               this.props.tab.items.slice(this.props.tab.displayMax).map((item, i) => this.props.tab.name !== 'Browse' ?
               <TourPreview key={item.id} item={item} index={i} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === i}/>
               : <CategoryPreview key={item.id} item={item}/>)
-            : <SeeMoreSpan>See more</SeeMoreSpan>)
+            : <SeeMoreSpan onClick={this.handleSeeMoreClick}>See more</SeeMoreSpan>)
           : null }
         </DisplayRow>
       </DisplayContainer>
