@@ -27,10 +27,10 @@ const generateListings = (number) => {
 const generateCategories = (number) => {
   const promises = [];
   for (let i = 0; i < number; i++) {
-    const name = faker.commerce.department();
-    const description = faker.company.catchPhrase();
+    const name = faker.commerce.department() + ' & ' + faker.commerce.department();
+    const description = faker.company.catchPhrase().slice(0, 35);
     const sqlString = 'INSERT INTO categories (name, description) VALUES (?, ?)';
-    promises.push(insert(sqlString, [name, description]));
+    promises.push(insert(sqlString, [name.slice(0, 20), description]));
   }
   return Promise.all(promises);
 };

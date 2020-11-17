@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import App from './App.jsx';
+import App from '../components/App.jsx';
 
 describe('<App />', () => {
   it('displays the section title', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import TabBar from './TabBar.jsx';
+import TabBar from '../components/TabBar.jsx';
 
 const tabs = [{name: 'test', description: 'test'}, {name: 'test', description: 'test'}, {name: 'test', description: 'test'}];
 

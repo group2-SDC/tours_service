@@ -1,14 +1,33 @@
 import React from 'react';
 import axios from 'axios';
 import {Promise} from 'bluebird';
+import {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 
 import TabBar from './TabBar.jsx';
+import Display from './Display.jsx';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start-flex;
+  width: 1200px;
+`
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: 0,
+      dataLoaded: false,
       tabs: []
     };
 
@@ -81,7 +100,8 @@ class App extends React.Component {
         categoryTabs.forEach(categoryTab => populatedTabs.push(categoryTab));
         populatedTabs.push(browseTab);
         this.setState({
-          tabs: populatedTabs
+          tabs: populatedTabs,
+          dataLoaded: true
         });
       })
       .catch(err => console.log(err));     
@@ -96,10 +116,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <h1>Get the full experience and book a tour</h1>
-        <table>
+        <Container>
           <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
-        </table>
+          {this.state.dataLoaded ? <Display tab={this.state.tabs[this.state.view]}/> : null}
+        </Container>
       </div>
     );
   }
