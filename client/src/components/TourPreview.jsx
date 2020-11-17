@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TourPreviewImage from './TourPreviewImage.jsx';
 
 const StyledTourPreview = styled.div`
   display: flex;
@@ -8,34 +9,6 @@ const StyledTourPreview = styled.div`
   border: 1px solid lightgray;
   text-align: left;
   margin: 20px;
-`;
-
-const ImageContainer = styled.div`
-  background-image: url(${props => props.photo});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 261px;
-  height: 173px;
-`;
-
-const ImageOverlay = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
-
-const QuickViewButton = styled.button`
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 6px 10px;
-  font-weight: 500;
-  font-size: 12px;
-  width: 100px;
 `;
 
 const TourName = styled.span`
@@ -124,11 +97,7 @@ const TourPreview = (props) => {
 
   return (
     <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
-      <ImageContainer photo={props.item.photo + `?random=${props.item.id}`}>
-        <ImageOverlay>
-          {props.isHovered ? <QuickViewButton>Quick View</QuickViewButton> : null}
-        </ImageOverlay>
-      </ImageContainer>
+      <TourPreviewImage isHovered={props.isHovered} photo={props.item.photo} id={props.item.id}/>
       <TourName>{props.item.name}</TourName>
       <ReviewsContainer>
         <BubblesContainer>
