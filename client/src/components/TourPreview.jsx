@@ -39,10 +39,10 @@ const QuickViewButton = styled.button`
 `
 
 const TourPreview = (props) => (
-  <StyledTourPreview>
+  <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
     <ImageContainer photo={props.item.photo + `?random=${props.item.id}`}>
       <ImageOverlay>
-        <QuickViewButton>Quick View</QuickViewButton>
+        {props.isHovered ? <QuickViewButton>Quick View</QuickViewButton> : null}
       </ImageOverlay>
     </ImageContainer>
     {props.item.name} <br />

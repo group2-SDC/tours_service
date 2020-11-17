@@ -24,15 +24,25 @@ class Display extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      hoveredItem: null
     };
+    this.toggleHover = this.toggleHover.bind(this);
+  }
+
+  toggleHover(index) {
+    this.setState({
+      hoveredItem: index >= 0 ? index : null
+    });
   }
 
   render() {
     return (
       <DisplayContainer>
         <DisplayRow>
-          {this.props.tab.items.slice(0, this.props.tab.displayMax).map(item => this.props.tab.name !== 'Browse' ? <TourPreview key={item.id} item={item}/> : <CategoryPreview key={item.id} item={item}/>)}
+          {this.props.tab.items.slice(0, this.props.tab.displayMax).map((item, i) => this.props.tab.name !== 'Browse' ?
+            <TourPreview key={item.id} item={item} index={i} toggleHover={this.toggleHover} isHovered={this.state.hoveredItem === i}/>
+            : <CategoryPreview key={item.id} item={item}/>)}
         </DisplayRow>
       </DisplayContainer>
     )
