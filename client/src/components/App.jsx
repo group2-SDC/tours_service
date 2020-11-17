@@ -131,8 +131,16 @@ class App extends React.Component {
         <GlobalStyle />
         <h1>Get the full experience and book a tour</h1>
         <Container>
-          <TabBar tabs={this.state.tabs} currentTab={this.state.view} updateView={this.updateView}/>
-          {this.state.dataLoaded ? <Display tab={this.state.tabs[this.state.view]} showAllItems={this.showAllItems}/>
+          <TabBar
+            tabs={this.state.tabs}
+            currentTab={this.state.view}
+            updateView={this.updateView}
+          />
+          {this.state.dataLoaded ?
+            <Display
+              tab={this.state.tabs[this.state.view]}
+              showAllItems={this.showAllItems}
+            />
           : null}
         </Container>
       </div>

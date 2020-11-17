@@ -47,7 +47,12 @@ const TourPreviewReviews = (props) => {
   return (
     <ReviewsContainer>
       <BubblesContainer>
-        {generateRatingBubbles(props.avgRating).map((bubble, i) => <RatingsBubble key={i} status={bubble}/>)}
+        {generateRatingBubbles(props.avgRating).map((bubble, i) =>
+          <RatingsBubble
+            key={i}
+            status={bubble}
+          />
+        )}
       </BubblesContainer>
       <ReviewsSpan>{props.reviews} reviews</ReviewsSpan>
     </ReviewsContainer>
