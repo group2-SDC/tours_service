@@ -6,7 +6,7 @@ const StyledTourPreview = styled.div`
   flex-direction: column;
   justify-content: center;
   border: 1px solid lightgray;
-  text-align: center;
+  text-align: left;
   margin: 20px;
 `;
 
@@ -26,7 +26,7 @@ const ImageOverlay = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-`
+`;
 
 const QuickViewButton = styled.button`
   background-color: white;
@@ -36,7 +36,40 @@ const QuickViewButton = styled.button`
   font-weight: 500;
   font-size: 12px;
   width: 100px;
+`;
+
+const TourName = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px;
+`;
+
+
+const InfoContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
 `
+
+const Price = styled.span`
+  display: flex;
+  flex-direction: column;
+  margin-right: 35px;
+  font-size: 12px;
+  justify-content: flex-end;
+  text-align: left;
+`
+
+const MoreInfoButton = styled.button`
+  border: 1px solid black;
+  border-radius: 18px;
+  background-color: black;
+  font-size: 14px;
+  color: white;
+  padding: 8px 16px;
+  width: 100px;
+  text-align: center;
+`;
 
 const TourPreview = (props) => (
   <StyledTourPreview onMouseOver={() => props.toggleHover(props.index)} onMouseLeave={props.toggleHover}>
@@ -45,8 +78,11 @@ const TourPreview = (props) => (
         {props.isHovered ? <QuickViewButton>Quick View</QuickViewButton> : null}
       </ImageOverlay>
     </ImageContainer>
-    {props.item.name} <br />
-    {props.item.base_price} per adult
+    <TourName>{props.item.name}</TourName><br />
+    <InfoContainer>
+      <Price>${props.item.base_price} per adult</Price>
+      <MoreInfoButton>More info</MoreInfoButton>
+    </InfoContainer>
   </StyledTourPreview>
 );
 
