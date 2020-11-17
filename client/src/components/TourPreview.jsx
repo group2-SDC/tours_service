@@ -44,20 +44,27 @@ const TourName = styled.span`
   padding: 10px;
 `;
 
-
 const InfoContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 10px;
 `
 
-const Price = styled.span`
+const PriceContainer = styled.span`
   display: flex;
   flex-direction: column;
-  margin-right: 35px;
-  font-size: 12px;
+  margin-right: 30px;
   justify-content: flex-end;
   text-align: left;
+`
+const Price = styled.span`
+  display: flex;
+  font-size: 12px;
+`
+
+const Bold = styled.span`
+  font-weight: 500;
+  margin-right: 5px;
 `
 
 const MoreInfoButton = styled.button`
@@ -80,7 +87,12 @@ const TourPreview = (props) => (
     </ImageContainer>
     <TourName>{props.item.name}</TourName><br />
     <InfoContainer>
-      <Price>${props.item.base_price} per adult</Price>
+      <PriceContainer>
+        <Price>
+          <Bold>${props.item.base_price}</Bold>
+          <span>per adult</span>
+        </Price>
+      </PriceContainer>
       <MoreInfoButton>More info</MoreInfoButton>
     </InfoContainer>
   </StyledTourPreview>
