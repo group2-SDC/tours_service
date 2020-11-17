@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
 import TourPreviewReviews from './TourPreviewReviews.jsx';
+import TourPreviewInfo from './TourPreviewInfo.jsx';
 
 const StyledTourPreview = styled.div`
   display: flex;
