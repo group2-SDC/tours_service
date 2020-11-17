@@ -9,8 +9,8 @@ CREATE TABLE listings (
 
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  description VARCHAR(100)
+  name VARCHAR(250),
+  description VARCHAR(500)
 );
 
 CREATE TABLE tours (
@@ -48,5 +48,3 @@ CREATE TABLE tours_languages (
   FOREIGN KEY (tours_id) REFERENCES tours(id),
   FOREIGN KEY (languages_id) REFERENCES languages(id)
 );
-
-
