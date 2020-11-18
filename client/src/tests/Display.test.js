@@ -7,7 +7,7 @@ import CategoryPreview from '../components/CategoryPreview.jsx';
 
 describe('<Display /> if given a tour category tab', () => {
   const sampleRecommendedTab = sampleTabs[0];
-  it('initially displays 4 tour previews if given a tour category tab', () => {
+  it('initially displays 4 tour previews', () => {
     const wrapper = shallow(
     <Display
       tab={sampleRecommendedTab}

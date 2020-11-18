@@ -12,6 +12,7 @@ const SeeMoreBar = styled.div`
   font-weight: 500;
   cursor: pointer;
 `
+SeeMoreBar.displayName = 'SeeMoreBar';
 
 const SeeMoreSpan = styled.span`
   display: flex;
