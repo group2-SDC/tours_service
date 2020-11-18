@@ -29,6 +29,7 @@ const TourPreview = (props) => (
         isHovered={props.isHovered}
         photo={props.item.photo}
         id={props.item.id}
+        toggleModal={props.toggleModal}
       />
       <TourName>{props.item.name}</TourName>
       <TourPreviewReviews
