@@ -888,7 +888,7 @@ FN:32,TourPreviewImage
 FN:37,onClick
 FNF:2
 FNH:1
-FNDA:1,TourPreviewImage
+FNDA:2,TourPreviewImage
 FNDA:0,onClick
 DA:1,1
 DA:2,1
@@ -934,10 +934,11 @@ DA:41,1
 DA:42,1
 LF:42
 LH:42
-BRDA:32,0,0,1
-BRDA:37,1,0,0
-BRF:2
-BRH:1
+BRDA:32,0,0,2
+BRDA:37,1,0,1
+BRDA:37,2,0,1
+BRF:3
+BRH:3
 end_of_record
 TN:
 SF:client/src/components/TourPreviewInfo.jsx

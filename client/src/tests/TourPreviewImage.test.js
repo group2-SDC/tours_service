@@ -14,4 +14,13 @@ describe('<TourPreviewImage />', () => {
     />);
     expect(wrapper.find('QuickViewButton')).toHaveLength(1);
   });
+  it('does not display quick view button when passed false for isHovered status', () => {
+    const wrapper = shallow(
+    <TourPreviewImage
+      isHovered={false}
+      item={sampleTabs[0].items[0]}
+      toggleModal={jest.fn()}
+    />);
+    expect(wrapper.find('QuickViewButton')).toHaveLength(0);
+  });
 });
