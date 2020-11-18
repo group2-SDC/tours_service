@@ -28,7 +28,7 @@ class Display extends React.Component {
     super(props);
     this.state = {
       hoveredItem: null,
-      showAll: false
+      showAll: this.props.tab.showAll
     };
     this.toggleHover = this.toggleHover.bind(this);
     this.handleSeeMoreClick = this.handleSeeMoreClick.bind(this);
