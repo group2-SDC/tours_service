@@ -60,30 +60,40 @@ const ModalBody = (props) => (
       <StyledDescription>
         {props.item.description}
       </StyledDescription>
-      <DetailRow>
-        <DetailIcon><i className="fas fa-check"></i></DetailIcon>
-        Free Cancellation up to 24 hours in advance
-      </DetailRow>
+      {props.item.free_cancel ?
+        <DetailRow>
+          <DetailIcon><i className="fas fa-check"></i></DetailIcon>
+          Free Cancellation up to 24 hours in advance
+        </DetailRow>
+      : null}
       <DetailRow>
         <DetailIcon><i className="fas fa-globe-americas"></i></DetailIcon>
-        Languages Offered:
+        Languages Offered: {props.item.langs_offered.map((langObj, i) => i === props.item.langs_offered.length - 1 ? `${langObj.language}` : `${langObj.language}, `)}
       </DetailRow>
-      <DetailRow>
-        <DetailIcon><i className="fas fa-mobile-alt"></i></DetailIcon>
-        Electronic Voucher Accepted
-      </DetailRow>
-      <DetailRow>
-        <DetailIcon><i className="fas fa-bolt"></i></DetailIcon>
-        Instant confirmation
-      </DetailRow>
+      {props.item.evoucher_accepted ? 
+        <DetailRow>
+          <DetailIcon><i className="fas fa-mobile-alt"></i></DetailIcon>
+          Electronic Voucher Accepted
+        </DetailRow>
+      : null}
+      {props.item.instant_confirm ?
+        <DetailRow>
+          <DetailIcon><i className="fas fa-bolt"></i></DetailIcon>
+          Instant confirmation
+        </DetailRow>
+      : null}
       <DetailRow>
         <DetailIcon><i className="far fa-clock"></i></DetailIcon>
-        Duration
+        {props.item.days ? (props.item.days > 1 ? `${props.item.days} days ` : `${props.item.days} day `) : null}
+        {props.item.hours ? (props.item.hours > 1 ? `${props.item.hours} hours ` : `${props.item.hours} hour `) : null}
+        {props.item.minutes ? (props.item.minutes > 1 ? `${props.item.minutes} minutes ` : `${props.item.minutes} minute `) : null}
       </DetailRow>
-      <DetailRow>
-        <DetailIcon><i className="fas fa-parking"></i></DetailIcon>
-        Hotel Pickup
-      </DetailRow>
+      {props.item.hotel_pickup ?
+        <DetailRow>
+          <DetailIcon><i className="fas fa-parking"></i></DetailIcon>
+          Hotel Pickup
+        </DetailRow>
+      : null}
     </DetailsContainer>
   </BodyContainer>
 
