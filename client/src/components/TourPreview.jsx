@@ -31,7 +31,8 @@ const TourPreview = (props) => (
         toggleModal={props.toggleModal}
       />
       <TourName>{props.item.name}</TourName>
-      <TourReviewsSnapshot
+      <TourReviewsSnapshot 
+        size="normal"
         reviews={props.item.reviews}
         avgRating={props.item.avg_rating}
       />

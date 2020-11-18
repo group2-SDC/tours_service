@@ -41,6 +41,7 @@ const Category = styled.span`
 const Name = styled.span`
   font-size: 24px;
   font-weight: 500;
+  margin-bottom: 10px;
 `
 
 const TourModal = (props) => (

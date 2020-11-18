@@ -55,6 +55,7 @@ const ModalHeader = (props) => (
   <HeaderContainer>
     <ReviewsAndCompanyContainer>
       <TourReviewsSnapshot
+        size="small"
         reviews={props.item.reviews}
         avgRating={props.item.avg_rating}
       />
