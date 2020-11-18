@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import TabBar from './TabBar.jsx';
 import Display from './Display.jsx';
-import TourModal from './TourModal.jsx';
+import Modal from './Modal.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -144,7 +144,7 @@ class App extends React.Component {
       <div onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
         <Container>
-          {this.state.showModal ? <TourModal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
+          {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
           <h1>Get the full experience and book a tour</h1>
           <TabBar
             tabs={this.state.tabs}
