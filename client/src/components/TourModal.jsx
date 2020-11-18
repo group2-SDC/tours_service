@@ -17,12 +17,21 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 10px;
+`
+
+const Exit = styled.div`
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 `
 
 const TourModal = (props) => (
   <Modal>
-    This is a test
+    <ContentContainer>
+      <Exit> <i class="fas fa-times" onClick={props.toggleModal}></i> </Exit>
+    </ContentContainer>
   </Modal>
 )
 

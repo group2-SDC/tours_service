@@ -138,7 +138,7 @@ class App extends React.Component {
       <div>
         <GlobalStyle />
         <Container>
-          {this.state.showModal ? <TourModal /> : null}
+          {this.state.showModal ? <TourModal toggleModal={this.toggleModal}/> : null}
           <h1>Get the full experience and book a tour</h1>
           <TabBar
             tabs={this.state.tabs}
