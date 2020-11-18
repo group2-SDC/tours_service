@@ -9,6 +9,7 @@ const StyledCategoryPreview = styled.div`
   max-width: 156px;
   height: 215px;
   flex: 1 1 0;
+  cursor: pointer;
 `;
 
 const StyledName = styled.span`

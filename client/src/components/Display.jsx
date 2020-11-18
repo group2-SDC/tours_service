@@ -27,7 +27,6 @@ class Display extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
       hoveredItem: null,
       showAll: false
     };
@@ -67,6 +66,7 @@ class Display extends React.Component {
                 key={item.id}
                 item={item}
                 toggleHover={this.toggleHover}
+                toggleModal = {this.props.toggleModal}
                 isHovered={this.state.hoveredItem === item.id}
               />
             :
@@ -85,6 +85,7 @@ class Display extends React.Component {
                     key={item.id}
                     item={item}
                     toggleHover={this.toggleHover}
+                    toggleModal={this.props.toggleModal}
                     isHovered={this.state.hoveredItem === item.id}
                   />
                 :

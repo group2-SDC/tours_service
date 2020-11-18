@@ -6,11 +6,16 @@ import styled from 'styled-components';
 
 import TabBar from './TabBar.jsx';
 import Display from './Display.jsx';
+import Modal from './Modal.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
+  }
+  button {
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
   }
 `
 
@@ -18,7 +23,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start-flex;
   width: 1225px;
 `
 
@@ -28,11 +32,14 @@ class App extends React.Component {
     this.state = {
       view: 0,
       dataLoaded: false,
-      tabs: []
+      tabs: [],
+      showModal: false,
+      currentItem: null
     };
 
     this.updateView = this.updateView.bind(this);
     this.showAllItems = this.showAllItems.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -125,12 +132,20 @@ class App extends React.Component {
     });
   }
 
+  toggleModal(item) {
+    this.setState({
+      showModal: !this.state.showModal,
+      currentItem: item || null
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
-        <h1>Get the full experience and book a tour</h1>
         <Container>
+          {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
+          <h1>Get the full experience and book a tour</h1>
           <TabBar
             tabs={this.state.tabs}
             currentTab={this.state.view}
@@ -140,6 +155,7 @@ class App extends React.Component {
             <Display
               tab={this.state.tabs[this.state.view]}
               showAllItems={this.showAllItems}
+              toggleModal={this.toggleModal}
             />
           : null}
         </Container>
