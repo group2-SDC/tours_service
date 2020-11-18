@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ModalHeader from './ModalHeader.jsx';
+import ModalBody from './ModalBody.jsx';
 
 const Modal = styled.div`
   position: fixed;
@@ -49,6 +50,7 @@ const TourModal = (props) => (
       <Category>{props.item.categories_name}</Category>
       <Name>{props.item.name}</Name>
       <ModalHeader item={props.item}/>
+      <ModalBody item={props.item}/>
     </ContentContainer>
   </Modal>
 )
