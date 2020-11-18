@@ -26,16 +26,14 @@ const QuickViewButton = styled.button`
   padding: 6px 10px;
   font-weight: 500;
   font-size: 12px;
-  width: 100px;
-  cursor: pointer;
 `;
 
 const TourPreviewImage = (props) => (
   <ImageContainer
-    photo={props.tour.photo + `?random=${props.tour.id}`}
+    photo={props.item.photo + `?random=${props.item.id}`}
   >
     <ImageOverlay>
-      {props.isHovered ? <QuickViewButton onClick={() => props.toggleModal(props.tour)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
+      {props.isHovered ? <QuickViewButton onClick={() => props.toggleModal(props.item)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
     </ImageOverlay>
   </ImageContainer>
 );

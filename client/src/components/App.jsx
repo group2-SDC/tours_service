@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
   }
+  button {
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+  }
 `
 
 const Container = styled.div`
@@ -30,7 +34,7 @@ class App extends React.Component {
       dataLoaded: false,
       tabs: [],
       showModal: false,
-      currentTour: null
+      currentItem: null
     };
 
     this.updateView = this.updateView.bind(this);
@@ -128,10 +132,10 @@ class App extends React.Component {
     });
   }
 
-  toggleModal(tour) {
+  toggleModal(item) {
     this.setState({
       showModal: !this.state.showModal,
-      currentTour: tour || null
+      currentItem: item || null
     });
   }
 
@@ -140,7 +144,7 @@ class App extends React.Component {
       <div onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
         <Container>
-          {this.state.showModal ? <TourModal tour={this.state.currentTour} toggleModal={this.toggleModal}/> : null}
+          {this.state.showModal ? <TourModal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
           <h1>Get the full experience and book a tour</h1>
           <TabBar
             tabs={this.state.tabs}

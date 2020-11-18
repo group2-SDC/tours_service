@@ -26,7 +26,7 @@ const ReviewsSpan = styled.span`
   margin-left: 5px;
 `
 
-const TourPreviewReviews = (props) => {
+const TourReviewsSnapshot = (props) => {
   const generateRatingBubbles = (avgRating) => {
     const bubbles = {};
 
@@ -59,4 +59,4 @@ const TourPreviewReviews = (props) => {
   )
 }
 
-export default TourPreviewReviews;
+export default TourReviewsSnapshot;

@@ -34,7 +34,6 @@ const MoreInfoButton = styled.button`
   padding: 8px 16px;
   width: 100px;
   text-align: center;
-  cursor: pointer;
 `;
 
 const TourPreviewInfo = (props) => (

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
-import TourPreviewReviews from './TourPreviewReviews.jsx';
+import TourReviewsSnapshot from './TourReviewsSnapshot.jsx';
 import TourPreviewInfo from './TourPreviewInfo.jsx';
 
 const StyledTourPreview = styled.div`
@@ -27,11 +27,11 @@ const TourPreview = (props) => (
     >
       <TourPreviewImage
         isHovered={props.isHovered}
-        tour={props.item}
+        item={props.item}
         toggleModal={props.toggleModal}
       />
       <TourName>{props.item.name}</TourName>
-      <TourPreviewReviews
+      <TourReviewsSnapshot
         reviews={props.item.reviews}
         avgRating={props.item.avg_rating}
       />
