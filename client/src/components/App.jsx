@@ -135,7 +135,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
         <Container>
           {this.state.showModal ? <TourModal toggleModal={this.toggleModal}/> : null}
