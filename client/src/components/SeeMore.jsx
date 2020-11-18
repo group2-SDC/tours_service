@@ -21,8 +21,8 @@ const SeeMoreSpan = styled.span`
 `
 
 const SeeMore = (props) => (
-  <SeeMoreBar>
-    <SeeMoreSpan onClick={props.handleSeeMoreClick}>See more</SeeMoreSpan>
+  <SeeMoreBar onClick={props.handleSeeMoreClick}>
+    <SeeMoreSpan>See more</SeeMoreSpan>
     <i className="fas fa-angle-down"></i>
   </SeeMoreBar>
 )

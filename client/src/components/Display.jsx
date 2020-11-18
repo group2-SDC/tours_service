@@ -36,7 +36,7 @@ class Display extends React.Component {
 
   componentDidUpdate(prevProps) {
     // check if this is a new tab, if it is, make sure state is up-to-date with tab's showAll status
-    if (this.props.tab.name !== prevProps.tab.name) {
+    if (this.props.tab !== prevProps.tab) {
       this.setState({
         showAll: this.props.tab.showAll
       });
