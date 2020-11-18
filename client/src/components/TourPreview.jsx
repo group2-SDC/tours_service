@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
-import TourReviewsSnapshot from './TourReviewsSnapshot.jsx';
+import { TourReviewsSnapshot } from './TourReviewsSnapshot.jsx';
 import TourPreviewInfo from './TourPreviewInfo.jsx';
 
 const StyledTourPreview = styled.div`

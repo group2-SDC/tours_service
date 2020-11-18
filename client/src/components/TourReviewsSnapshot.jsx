@@ -21,29 +21,30 @@ const RatingsBubble = styled.span`
   background: ${props => props.status === 'half' ? 'linear-gradient(to right, #00AA6C 50%, white 50%)' : props.status === 'full' ? '#00AA6C' : 'white'};
   margin-right: 2px;
 `
+RatingsBubble.displayName = 'RatingsBubble';
 
 const ReviewsSpan = styled.span`
   margin-left: 5px;
 `
 
-const TourReviewsSnapshot = (props) => {
-  const generateRatingBubbles = (avgRating) => {
-    const bubbles = {};
+const generateRatingBubbles = (avgRating) => {
+  const bubbles = {};
 
-    bubbles.full = Math.round(avgRating);
-    bubbles.half = Math.ceil(avgRating - bubbles.full);
-    bubbles.empty = 5 - (bubbles.full + bubbles.half);
+  bubbles.full = Math.round(avgRating);
+  bubbles.half = Math.ceil(avgRating - bubbles.full);
+  bubbles.empty = 5 - (bubbles.full + bubbles.half);
 
-    const bubblesArray = [];
+  const bubblesArray = [];
 
-    for (let key in bubbles) {
-      for (let i = 0; i < bubbles[key]; i++) {
-        bubblesArray.push(key);
-      }
+  for (let key in bubbles) {
+    for (let i = 0; i < bubbles[key]; i++) {
+      bubblesArray.push(key);
     }
-    return bubblesArray;
-  };
+  }
+  return bubblesArray;
+};
 
+const TourReviewsSnapshot = (props) => {
   return (
     <ReviewsContainer size={props.size}>
       <BubblesContainer>
@@ -60,4 +61,4 @@ const TourReviewsSnapshot = (props) => {
   )
 }
 
-export default TourReviewsSnapshot;
+export { TourReviewsSnapshot, generateRatingBubbles };

@@ -8,3 +8,6 @@ describe('<App />', () => {
     expect(wrapper.find('h1').text()).toContain('Get the full experience and book a tour');
   });
 });
+
+// mock componentdidmount
+// mock axios
