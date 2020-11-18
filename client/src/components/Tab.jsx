@@ -13,6 +13,7 @@ const StyledTab = styled.div`
   text-align: center;
   flex: 1 1 16.66%;
 `;
+StyledTab.displayName = "StyledTab";
 
 const StyledSpan = styled.span`
   font-weight: 500;
