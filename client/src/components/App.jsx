@@ -29,7 +29,8 @@ class App extends React.Component {
       view: 0,
       dataLoaded: false,
       tabs: [],
-      showModal: false
+      showModal: false,
+      currentTour: null
     };
 
     this.updateView = this.updateView.bind(this);
@@ -127,9 +128,10 @@ class App extends React.Component {
     });
   }
 
-  toggleModal() {
+  toggleModal(tour) {
     this.setState({
-      showModal: !this.state.showModal
+      showModal: !this.state.showModal,
+      currentTour: tour || null
     });
   }
 
@@ -138,7 +140,7 @@ class App extends React.Component {
       <div onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
         <Container>
-          {this.state.showModal ? <TourModal toggleModal={this.toggleModal}/> : null}
+          {this.state.showModal ? <TourModal tour={this.state.currentTour} toggleModal={this.toggleModal}/> : null}
           <h1>Get the full experience and book a tour</h1>
           <TabBar
             tabs={this.state.tabs}

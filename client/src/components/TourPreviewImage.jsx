@@ -32,10 +32,10 @@ const QuickViewButton = styled.button`
 
 const TourPreviewImage = (props) => (
   <ImageContainer
-    photo={props.photo + `?random=${props.id}`}
+    photo={props.tour.photo + `?random=${props.tour.id}`}
   >
     <ImageOverlay>
-      {props.isHovered ? <QuickViewButton onClick={props.toggleModal}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
+      {props.isHovered ? <QuickViewButton onClick={() => props.toggleModal(props.tour)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
     </ImageOverlay>
   </ImageContainer>
 );

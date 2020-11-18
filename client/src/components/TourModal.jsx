@@ -11,7 +11,6 @@ const Modal = styled.div`
   box-shadow: 0 0 3px black;
   z-index: 1;
   align-self: center;
-  box-sizing: border-box;
 `
 
 const ContentContainer = styled.div`
@@ -28,10 +27,23 @@ const Exit = styled.div`
   cursor: pointer;
 `
 
+const Category = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  color: gray;
+`
+
+const Name = styled.span`
+  font-size: 24px;
+  font-weight: 500;
+`
+
 const TourModal = (props) => (
   <Modal>
     <ContentContainer>
       <Exit> <i className="fas fa-times" onClick={props.toggleModal}></i> </Exit>
+      <Category>{props.tour.categories_name}</Category>
+      <Name>{props.tour.name}</Name>
     </ContentContainer>
   </Modal>
 )
