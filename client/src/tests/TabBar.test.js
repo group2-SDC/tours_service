@@ -1,14 +1,12 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import TabBar from '../components/TabBar.jsx';
-
-const tabs = [{name: 'test', description: 'test'}, {name: 'test', description: 'test'}, {name: 'test', description: 'test'}];
+import Tab from '../components/Tab.jsx';
+import { sampleTabs } from './sampleData.js';
 
 describe('<TabBar />', () => {
   it('renders the correct number of tabs', () => {
-    const wrapper = shallow(<TabBar tabs={tabs}/>);
-    expect(wrapper.find('tr').children()).to.have.lengthOf(tabs.length);
+    const wrapper = shallow(<TabBar tabs={sampleTabs}/>);
+    expect(wrapper.find(Tab)).toHaveLength(sampleTabs.length);
   });
 });
-
-// failing because the Tab elements are not being rendered and therefore don't exist in this test
