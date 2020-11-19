@@ -24,7 +24,15 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 1225px;
+  margin: auto;
 `
+
+const Heading = styled.span`
+  font-size: 26px;
+  font-weight: 500;
+  margin: 20px 0;
+`
+Heading.displayName = 'Heading';
 
 class App extends React.Component {
   constructor(props) {
@@ -145,7 +153,7 @@ class App extends React.Component {
         <GlobalStyle />
         <Container>
           {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
-          <h1>Get the full experience and book a tour</h1>
+          <Heading>Get the full experience and book a tour</Heading>
           <TabBar
             tabs={this.state.tabs}
             currentTab={this.state.view}
