@@ -1,2 +1,2 @@
 # tours_service
-Service to explore nearby tour experiences
+Clone of Tripadvisor service to explore nearby tour experiences
