@@ -28,17 +28,18 @@ const generateCategories = (number) => {
   const promises = [];
   for (let i = 0; i < number; i++) {
     const name = faker.commerce.department() + ' & ' + faker.commerce.department();
-    const description = faker.company.catchPhrase().slice(0, 35);
+    const description = faker.company.catchPhrase().slice(0, 30);
     const sqlString = 'INSERT INTO categories (name, description) VALUES (?, ?)';
     promises.push(insert(sqlString, [name.slice(0, 20), description]));
   }
   return Promise.all(promises);
 };
 
-const generateLanguages = (number) => {
+const generateLanguages = () => {
   const promises = [];
-  for (let i = 0; i < number; i++) {
-    const language = faker.address.country();
+  const popLangs = ['Mandarin Chinese', 'Spanish', 'English', 'Hindi', 'Bengali', 'Portuguese', 'Russian', 'Japanese', 'Korean', 'French', 'German', 'Vietnamese', 'Telugu', 'Turkish', 'Tamil'];
+  for (let i = 0; i < popLangs.length; i++) {
+    const language = popLangs[i];
     const sqlString = 'INSERT INTO languages (language) VALUES (?)';
     promises.push(insert(sqlString, [language]));
   }
@@ -51,7 +52,7 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
     const name = faker.commerce.productName();
     const company = faker.company.companyName();
     const description = faker.lorem.paragraph();
-    const days = Math.floor(Math.random() * 5);
+    const days = Math.floor(Math.random() * 2);
     const hours = Math.floor(Math.random() * 10);
     const minutes = Math.floor(Math.random() * 45);
     const base_price = faker.finance.amount();
@@ -59,9 +60,9 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
     const evoucher_accepted = Number(faker.random.boolean());
     const instant_confirm = Number(faker.random.boolean());
     const hotel_pickup = Number(faker.random.boolean());
-    const reviews = faker.random.number();
+    const reviews = Math.floor(Math.random() * 1000);
     const avg_rating = Math.random() * 5;
-    const bookings = faker.random.number();
+    const bookings = Math.floor(Math.random() * 8000);
     const favorite = 0;
     const listings_id = Math.floor(Math.random() * numberOfListings + 1);
     const categories_id = Math.floor(Math.random() * numberOfCategories + 1);
@@ -84,16 +85,16 @@ const generatePhotos = () => {
   });
 };
 
-const populateToursAndLangsTable = (numberOfLanguages) => {
+const populateToursAndLangsTable = () => {
   db.query('SELECT id from tours', (err, tours) => {
     if (err) {
       console.log(err);
     } else {
       tours.forEach(tour => {
-        const numOfLangs = Math.floor(Math.random() * 5 + 1);
+        const numOfLangs = Math.floor(Math.random() * 3 + 1);
         for (let i = 0; i < numOfLangs; i++) {
           const sqlString = 'INSERT INTO tours_languages (tours_id, languages_id) VALUES (?, ?)';
-          const languageId = Math.floor(Math.random() * numberOfLanguages + 1);
+          const languageId = Math.floor(Math.random() * 15 + 1);
           insert(sqlString, [tour.id, languageId]);
         }
       });
@@ -102,8 +103,7 @@ const populateToursAndLangsTable = (numberOfLanguages) => {
 };
 
 const listings = 100;
-const categories = 15;
-const languages = 20;
+const categories = 12;
 const tours = 5000;
 
 generateListings(listings)
@@ -111,7 +111,7 @@ generateListings(listings)
     generateCategories(categories);
   })
   .then(() => {
-    generateLanguages(languages);
+    generateLanguages();
   })
   .then(() => {
     generateTours(tours, listings, categories);
@@ -120,6 +120,6 @@ generateListings(listings)
     generatePhotos();
   })
   .then(() => {
-    populateToursAndLangsTable(languages);
+    populateToursAndLangsTable();
   })
   .catch(err => console.log(err));
