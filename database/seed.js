@@ -55,7 +55,7 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
     const days = Math.floor(Math.random() * 2);
     const hours = Math.floor(Math.random() * 10);
     const minutes = Math.floor(Math.random() * 45);
-    const base_price = faker.finance.amount();
+    const base_price = faker.finance.amount().toFixed(2);
     const free_cancel = Number(faker.random.boolean());
     const evoucher_accepted = Number(faker.random.boolean());
     const instant_confirm = Number(faker.random.boolean());
