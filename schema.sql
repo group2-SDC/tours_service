@@ -21,7 +21,7 @@ CREATE TABLE tours (
   days INT,
   hours INT,
   minutes INT,
-  base_price DECIMAL(10, 2),
+  base_price VARCHAR(10),
   free_cancel INT,
   evoucher_accepted INT,
   instant_confirm INT,
