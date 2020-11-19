@@ -17,6 +17,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
   }
+  html, body {
+    overflow: ${props => props.showModal ? 'hidden' : 'scroll'};
+    height: 100%;
+    width: 100%;
+  }
 `
 
 const BodyContainer = styled.div`
@@ -163,7 +168,7 @@ class App extends React.Component {
   render() {
     return (
       <BodyContainer onClick={this.state.showModal ? this.toggleModal : null}>
-        <GlobalStyle />
+        <GlobalStyle showModal={this.state.showModal}/>
         {this.state.showModal ? <Overlay /> : null}
         <Container>
           {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
