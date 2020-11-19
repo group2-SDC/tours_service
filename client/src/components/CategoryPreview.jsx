@@ -23,7 +23,7 @@ const StyledText = styled.span`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
+  padding: 0 5px;
   font-size: 12px;
   text-align: center;
 `
