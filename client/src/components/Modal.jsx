@@ -10,7 +10,7 @@ const Modal = styled.div`
   max-height: 745px;
   background-color: white;
   box-shadow: 0 0 3px black;
-  z-index: 1;
+  z-index: 2;
   align-self: center;
 `
 

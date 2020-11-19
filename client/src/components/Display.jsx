@@ -30,7 +30,7 @@ class Display extends React.Component {
       hoveredItem: null,
       showAll: this.props.tab.showAll
     };
-    this.toggleHover = this.toggleHover.bind(this);
+    this.toggleHoveredItem = this.toggleHoveredItem.bind(this);
     this.handleSeeMoreClick = this.handleSeeMoreClick.bind(this);
   }
 
@@ -43,7 +43,7 @@ class Display extends React.Component {
     }
   }
 
-  toggleHover(index) {
+  toggleHoveredItem(index) {
     this.setState({
       hoveredItem: index >= 0 ? index : null
     });
@@ -65,7 +65,7 @@ class Display extends React.Component {
               <TourPreview
                 key={item.id}
                 item={item}
-                toggleHover={this.toggleHover}
+                toggleHoveredItem={this.toggleHoveredItem}
                 toggleModal = {this.props.toggleModal}
                 isHovered={this.state.hoveredItem === item.id}
               />
@@ -84,7 +84,7 @@ class Display extends React.Component {
                   <TourPreview
                     key={item.id}
                     item={item}
-                    toggleHover={this.toggleHover}
+                    toggleHoveredItem={this.toggleHoveredItem}
                     toggleModal={this.props.toggleModal}
                     isHovered={this.state.hoveredItem === item.id}
                   />

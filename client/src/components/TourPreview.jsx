@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
 import { TourReviewsSnapshot } from './TourReviewsSnapshot.jsx';
 import TourPreviewInfo from './TourPreviewInfo.jsx';
+import FavoriteIcon from './FavoriteIcon.jsx';
 
 const StyledTourPreview = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border: 1px solid lightgray;
   text-align: left;
   margin: 20px;
@@ -20,11 +20,13 @@ const TourName = styled.span`
   padding: 0 10px;
 `;
 
+
 const TourPreview = (props) => (
     <StyledTourPreview
-      onMouseOver={() => props.toggleHover(props.item.id)}
-      onMouseLeave={props.toggleHover}
+      onMouseOver={() => props.toggleHoveredItem(props.item.id)}
+      onMouseLeave={props.toggleHoveredItem}
     >
+      <FavoriteIcon />
       <TourPreviewImage
         isHovered={props.isHovered}
         item={props.item}
