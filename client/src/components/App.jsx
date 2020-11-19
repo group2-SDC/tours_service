@@ -140,7 +140,7 @@ class App extends React.Component {
     });
   }
 
-  toggleModal(item) {
+  toggleModal(e, item) {
     this.setState({
       showModal: !this.state.showModal,
       currentItem: item || null

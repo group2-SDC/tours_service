@@ -34,7 +34,7 @@ const TourPreviewImage = (props) => (
     photo={props.item.photo + `?random=${props.item.id}`}
   >
     <ImageOverlay>
-      {props.isHovered ? <QuickViewButton onClick={() => props.toggleModal(props.item)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
+      {props.isHovered ? <QuickViewButton onClick={(e) => props.toggleModal(e, props.item)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
     </ImageOverlay>
   </ImageContainer>
 );

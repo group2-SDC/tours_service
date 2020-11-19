@@ -4,24 +4,25 @@ import styled from 'styled-components';
 const InfoContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding: 5px 10px;
+  align-items: flex-end;
+  margin: auto 10px 10px 10px;
 `;
 
 const PriceContainer = styled.span`
   display: flex;
-  flex-direction: column;
-  margin-right: 30px;
-  justify-content: flex-end;
+  align-items: baseline;
   text-align: left;
 `;
 
-const Price = styled.span`
+const PerAdult = styled.span`
   display: flex;
   font-size: 12px;
 `;
 
-const Bold = styled.span`
+const Price = styled.span`
+  display: flex;
   font-weight: 500;
+  font-size: 14px;
   margin-right: 5px;
 `;
 
@@ -46,11 +47,9 @@ const MoreInfoButton = styled.button`
 const TourPreviewInfo = (props) => (
   <InfoContainer>
     <PriceContainer>
-        <Price>
-          <Bold>${props.price}</Bold>
-          <span>per adult</span>
-        </Price>
-      </PriceContainer>
+      <Price>${props.price}</Price>
+      <PerAdult>per adult</PerAdult>
+    </PriceContainer>
       <ButtonContainer>
         <MoreInfoButton>More info</MoreInfoButton>
       </ButtonContainer>

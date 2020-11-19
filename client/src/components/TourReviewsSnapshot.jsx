@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ReviewsContainer = styled.div`
   display: flex;
-  padding: ${props => props.size === 'small' ? '0' : '5px 10px'};
+  padding: ${props => props.size === 'small' ? '0' : '0 10px'};
   font-size: ${props => props.size === 'small' ? '12px' : '16px'};
   align-items: center;
 `
