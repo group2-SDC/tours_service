@@ -6,8 +6,8 @@ const ImageContainer = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 261px;
-  height: 173px;
+  width: 279px;
+  height: 186px;
 `;
 
 const ImageOverlay = styled.div`

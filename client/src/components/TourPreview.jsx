@@ -11,7 +11,7 @@ const StyledTourPreview = styled.div`
   justify-content: flex-start;
   border: 1px solid lightgray;
   text-align: left;
-  margin: 20px;
+  margin: 10px;
   cursor: pointer;
   height: 350px;
 `;
@@ -54,7 +54,7 @@ const TourPreview = (props) => (
       <TourPreviewInfo
         price={props.item.base_price}
       />
-      {props.item.bookings > 6000 ? <PopularBar>Popular: Booked by {props.item.bookings} travelers!</PopularBar> : null}
+      {props.item.bookings > 6000 ? <PopularBar>Popular: Booked by {props.item.bookings.toString().slice(0, 1)},{props.item.bookings.toString().slice(1)} travelers!</PopularBar> : null}
     </StyledTourPreview>
 );
 

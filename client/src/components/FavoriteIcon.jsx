@@ -8,7 +8,7 @@ const HeartContainer = styled.div`
   padding: 15px;
   justify-content: center;
   align-items: center;
-
+  align-center: center;
 `
 
 const Heart = styled.span`
