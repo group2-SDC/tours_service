@@ -64,26 +64,15 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
     const avg_rating = Math.random() * 5;
     const bookings = Math.floor(Math.random() * 8000);
     const favorite = 0;
+    const randomPhotoNumber = Math.floor((Math.random() * 100) + 1).toString().padStart(3, 0);
+    const photo = `https://fec-project-images.s3-us-west-2.amazonaws.com/images/${randomPhotoNumber}.jpg`;
     const listings_id = Math.floor(Math.random() * numberOfListings + 1);
     const categories_id = Math.floor(Math.random() * numberOfCategories + 1);
-    const sqlString = 'INSERT INTO tours (name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, listings_id, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    promises.push(insert(sqlString, [name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, listings_id, categories_id]));
+    const sqlString = 'INSERT INTO tours (name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, photo, listings_id, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    promises.push(insert(sqlString, [name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, photo, listings_id, categories_id]));
   }
   return Promise.all(promises);
 }
-
-const generatePhotos = () => {
-  db.query('SELECT * FROM listings', (err, listings) => {
-    if (err) {
-      console.log(err);
-    } else {
-      listings.forEach(listing => {
-        const sqlString = 'UPDATE tours SET photo = ? WHERE listings_id = ?';
-        insert(sqlString, [`https://loremflickr.com/320/240/${listing.name}`, listing.id]);
-      });
-    }
-  });
-};
 
 const populateToursAndLangsTable = () => {
   db.query('SELECT id from tours', (err, tours) => {
@@ -115,9 +104,6 @@ generateListings(listings)
   })
   .then(() => {
     generateTours(tours, listings, categories);
-  })
-  .then(() => {
-    generatePhotos();
   })
   .then(() => {
     populateToursAndLangsTable();
