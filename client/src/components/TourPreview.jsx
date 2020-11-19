@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TourPreviewImage from './TourPreviewImage.jsx';
 import { TourReviewsSnapshot } from './TourReviewsSnapshot.jsx';
 import TourPreviewInfo from './TourPreviewInfo.jsx';
+import FavoriteIcon from './FavoriteIcon.jsx';
 
 const StyledTourPreview = styled.div`
   display: flex;
@@ -19,42 +20,13 @@ const TourName = styled.span`
   padding: 0 10px;
 `;
 
-const HeartContainer = styled.div`
-  display: flex;
-  align-self: flex-end;
-  position: absolute;
-  padding: 15px;
-  justify-content: center;
-  align-items: center;
-
-`
-
-const Heart = styled.span`
-  display: flex;
-  z-index: 1;
-`
-
-const Circle = styled.span`
-  display: flex;
-  color: white;
-  font-size: 25px;
-  position: absolute;
-`
-
 
 const TourPreview = (props) => (
     <StyledTourPreview
-      onMouseOver={() => props.toggleHover(props.item.id)}
-      onMouseLeave={props.toggleHover}
+      onMouseOver={() => props.toggleHoveredItem(props.item.id)}
+      onMouseLeave={props.toggleHoveredItem}
     >
-      <HeartContainer>
-        <Circle>
-          <i className="fas fa-circle"></i>
-        </Circle>
-        <Heart>
-          <i className="far fa-heart"></i>
-        </Heart>
-      </HeartContainer>
+      <FavoriteIcon />
       <TourPreviewImage
         isHovered={props.isHovered}
         item={props.item}
