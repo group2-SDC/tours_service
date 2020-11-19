@@ -19,12 +19,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const BodyContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 1225px;
   margin: auto;
+`
+
+const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, .3);
+  position: absolute;
+  z-index: 2;
 `
 
 const Heading = styled.span`
@@ -149,8 +162,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div onClick={this.state.showModal ? this.toggleModal : null}>
+      <BodyContainer onClick={this.state.showModal ? this.toggleModal : null}>
         <GlobalStyle />
+        {this.state.showModal ? <Overlay /> : null}
         <Container>
           {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
           <Heading>Get the full experience and book a tour</Heading>
@@ -167,7 +181,7 @@ class App extends React.Component {
             />
           : null}
         </Container>
-      </div>
+      </BodyContainer>
     );
   }
 }
