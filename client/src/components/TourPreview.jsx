@@ -7,7 +7,6 @@ import TourPreviewInfo from './TourPreviewInfo.jsx';
 const StyledTourPreview = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border: 1px solid lightgray;
   text-align: left;
   margin: 20px;
@@ -20,11 +19,42 @@ const TourName = styled.span`
   padding: 0 10px;
 `;
 
+const HeartContainer = styled.div`
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+
+`
+
+const Heart = styled.span`
+  display: flex;
+  z-index: 1;
+`
+
+const Circle = styled.span`
+  display: flex;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+`
+
+
 const TourPreview = (props) => (
     <StyledTourPreview
       onMouseOver={() => props.toggleHover(props.item.id)}
       onMouseLeave={props.toggleHover}
     >
+      <HeartContainer>
+        <Circle>
+          <i className="fas fa-circle"></i>
+        </Circle>
+        <Heart>
+          <i className="far fa-heart"></i>
+        </Heart>
+      </HeartContainer>
       <TourPreviewImage
         isHovered={props.isHovered}
         item={props.item}
