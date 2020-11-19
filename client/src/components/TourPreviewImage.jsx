@@ -27,6 +27,7 @@ const QuickViewButton = styled.button`
   font-weight: 500;
   font-size: 12px;
 `;
+QuickViewButton.displayName = 'QuickViewButton';
 
 const TourPreviewImage = (props) => (
   <ImageContainer
