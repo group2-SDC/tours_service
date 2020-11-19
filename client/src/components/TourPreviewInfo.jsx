@@ -25,7 +25,14 @@ const Bold = styled.span`
   margin-right: 5px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+`
+
 const MoreInfoButton = styled.button`
+  display: flex;
   border: 1px solid black;
   border-radius: 18px;
   background-color: black;
@@ -44,7 +51,9 @@ const TourPreviewInfo = (props) => (
           <span>per adult</span>
         </Price>
       </PriceContainer>
-      <MoreInfoButton>More info</MoreInfoButton>
+      <ButtonContainer>
+        <MoreInfoButton>More info</MoreInfoButton>
+      </ButtonContainer>
   </InfoContainer> 
 )
 
