@@ -31,6 +31,7 @@ CREATE TABLE tours (
   bookings INT,
   favorite INT,
   photo VARCHAR(500),
+  map VARCHAR(500),
   listings_id INT,
   categories_id INT,
   FOREIGN KEY (listings_id) REFERENCES listings(id),
