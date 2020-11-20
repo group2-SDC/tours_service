@@ -28,6 +28,7 @@ const BodyContainer = styled.div`
   width: 100%;
   height: 100%;
 `
+BodyContainer.displayName = 'BodyContainer';
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const Overlay = styled.div`
   position: absolute;
   z-index: 2;
 `
+Overlay.displayName = 'Overlay';
 
 const Heading = styled.span`
   font-size: 26px;

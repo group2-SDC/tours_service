@@ -10,6 +10,7 @@ const HeartContainer = styled.div`
   align-items: center;
   align-center: center;
 `
+HeartContainer.displayName = 'HeartContainer';
 
 const Heart = styled.span`
   display: flex;

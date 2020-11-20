@@ -31,7 +31,7 @@ const StyledText = styled.span`
 const CategoryPreview = (props) => (
   <StyledCategoryPreview>
     <img
-      src={props.item.photo + `?random=${props.item.id}`}
+      src={props.item.photo}
       width="156"
       height="103"
     />

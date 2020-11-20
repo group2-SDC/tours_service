@@ -31,7 +31,7 @@ QuickViewButton.displayName = 'QuickViewButton';
 
 const TourPreviewImage = (props) => (
   <ImageContainer
-    photo={props.item.photo + `?random=${props.item.id}`}
+    photo={props.item.photo}
   >
     <ImageOverlay>
       {props.isHovered ? <QuickViewButton onClick={(e) => props.toggleModal(e, props.item)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}

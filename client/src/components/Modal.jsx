@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ModalHeader from './ModalHeader.jsx';
 import ModalBody from './ModalBody.jsx';
 
-const Modal = styled.div`
+const ModalContainer = styled.div`
   position: fixed;
   top: 10%;
   max-width: 896px;
@@ -44,8 +44,8 @@ const Name = styled.span`
   margin-bottom: 10px;
 `
 
-const TourModal = (props) => (
-  <Modal>
+const Modal = (props) => (
+  <ModalContainer>
     <Exit> <i className="fas fa-times" onClick={props.toggleModal}></i> </Exit>
     <ContentContainer>
       <Category>{props.item.categories_name}</Category>
@@ -53,7 +53,7 @@ const TourModal = (props) => (
       <ModalHeader item={props.item}/>
       <ModalBody item={props.item}/>
     </ContentContainer>
-  </Modal>
+  </ModalContainer>
 )
 
-export default TourModal;
+export default Modal;
