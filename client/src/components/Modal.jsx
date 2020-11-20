@@ -5,10 +5,10 @@ import ModalBody from './ModalBody.jsx';
 
 const ModalContainer = styled.div`
   position: fixed;
-  top: 10%;
+  top: 5%;
   bottom: 5%;
-  max-width: 896px;
-  max-height: 745px;
+  max-width: 800px;
+  max-height: 700px;
   background-color: white;
   box-shadow: 0 0 3px black;
   z-index: 5;
