@@ -9,7 +9,6 @@ const StyledQuickViewButton = styled.button`
   font-weight: 500;
   font-size: 12px;
 `;
-StyledQuickViewButton.displayName = 'StyledQuickViewButton';
 
 class QuickViewButton extends React.Component {
   constructor(props) {
