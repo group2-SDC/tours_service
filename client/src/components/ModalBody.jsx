@@ -53,7 +53,7 @@ const DetailIcon = styled.div`
 const ModalBody = (props) => (
   <BodyContainer>
     <ImagesContainer>
-      <img src={props.item.photo + `?random=${props.item.id}`} />
+      <img src={props.item.photo} />
     </ImagesContainer>
     <DetailsContainer>
       <span>Overview</span>
