@@ -67,7 +67,7 @@ const generateTours = (number, numberOfListings, numberOfCategories) => {
     const randomPhotoNumber = Math.floor((Math.random() * 100) + 1).toString().padStart(3, 0);
     const photo = `https://fec-project-images.s3-us-west-2.amazonaws.com/images/${randomPhotoNumber}.jpg`;
     const randomMapNumber = Math.floor((Math.random() * 10) + 1);
-    const map = `https://fec-project-images.s3-us-west-2.amazonaws.com/maps/map_${randomMapNumber}.jpg`;
+    const map = `https://fec-project-images.s3-us-west-2.amazonaws.com/maps/map_${randomMapNumber}.png`;
     const listings_id = Math.floor(Math.random() * numberOfListings + 1);
     const categories_id = Math.floor(Math.random() * numberOfCategories + 1);
     const sqlString = 'INSERT INTO tours (name, company, description, days, hours, minutes, base_price, free_cancel, evoucher_accepted, instant_confirm, hotel_pickup, reviews, avg_rating, bookings, favorite, photo, map, listings_id, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
