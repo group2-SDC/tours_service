@@ -17,8 +17,16 @@ const ReviewsAndCompanyContainer = styled.div`
   padding-bottom: 25px;
 `;
 
-const Company = styled.span`
+const CompanyContainer = styled.div`
+  display: flex;
   font-size: 14px;
+`
+
+const Company = styled.span`
+  display: flex;
+  cursor: pointer;
+  color: rgb(0, 102, 153);
+  padding-left: 5px;
 `
 
 const PriceAndInfoContainer = styled.div`
@@ -59,7 +67,9 @@ const ModalHeader = (props) => (
         reviews={props.item.reviews}
         avgRating={props.item.avg_rating}
       />
-      <Company>By: {props.item.company}</Company>
+      <CompanyContainer>
+        By: <Company>{props.item.company}</Company>
+      </CompanyContainer>
     </ReviewsAndCompanyContainer>
     <PriceAndInfoContainer>
       <PriceContainer>
