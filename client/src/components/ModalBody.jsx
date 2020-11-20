@@ -14,7 +14,12 @@ const ImagesContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding-right: 25px;
-`
+`;
+
+const Map = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
 
 const DetailsContainer = styled.div`
   display: flex;
@@ -24,13 +29,13 @@ const DetailsContainer = styled.div`
   align-items: flex-start;
   font-size: 16px;
   font-weight: 500;
-`
+`;
 
 const StyledDescription = styled.p`
   margin-top: 0;
   font-size: 14px;
   font-weight: 200;
-`
+`;
 
 const DetailRow = styled.div`
   display: flex;
@@ -38,7 +43,7 @@ const DetailRow = styled.div`
   font-size: 14px;
   font-weight: 200;
   margin: 5px 0;
-`
+`;
 
 const DetailIcon = styled.div`
   display: flex;
@@ -48,12 +53,13 @@ const DetailIcon = styled.div`
   color: rgb(0, 170, 100);
   width: 25px;
   padding-right: 10px;
-`
+`;
 
 const ModalBody = (props) => (
   <BodyContainer>
     <ImagesContainer>
       <img src={props.item.photo} />
+      <Map><img src={props.item.map} width="320" /></Map>
     </ImagesContainer>
     <DetailsContainer>
       <span>Overview</span>

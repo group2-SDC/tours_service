@@ -6,6 +6,7 @@ import ModalBody from './ModalBody.jsx';
 const ModalContainer = styled.div`
   position: fixed;
   top: 10%;
+  bottom: 5%;
   max-width: 896px;
   max-height: 745px;
   background-color: white;
