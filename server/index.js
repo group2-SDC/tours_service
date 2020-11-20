@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('../database/index.js');
-const port = 3000;
+const port = 3002;
 const Promise = require('bluebird');
 
 app.use(express.static('public'));
