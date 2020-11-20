@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import QuickViewButton from './QuickViewButton.jsx';
 
 const ImageContainer = styled.div`
   background-image: url(${props => props.photo});
@@ -19,22 +20,17 @@ const ImageOverlay = styled.div`
   height: 100%;
 `;
 
-const QuickViewButton = styled.button`
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 6px 10px;
-  font-weight: 500;
-  font-size: 12px;
-`;
-QuickViewButton.displayName = 'QuickViewButton';
-
 const TourPreviewImage = (props) => (
   <ImageContainer
     photo={props.item.photo}
   >
     <ImageOverlay>
-      {props.isHovered ? <QuickViewButton onClick={(e) => props.toggleModal(e, props.item)}><i className="far fa-eye"></i> Quick View</QuickViewButton> : null}
+      {props.isHovered ?
+        <QuickViewButton
+          toggleModal={props.toggleModal}
+          item={props.item}
+        /> 
+        : null}
     </ImageOverlay>
   </ImageContainer>
 );
