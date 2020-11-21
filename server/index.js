@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+const morgan = require('morgan');
 const db = require('../database/index.js');
 const port = 3002;
 const Promise = require('bluebird');
 
-app.use(express.static('public'));
+app.use(morgan('dev'));
+
+app.use('/:listing_id', express.static('public'));
 
 // Retrieve all tour categories for a listing, in order of how many tours fall under that category
 app.get('/api/listings/:id/tours/categories', (req, res) => {
@@ -106,18 +110,18 @@ app.get('/api/listings/:id/tours/categories/:categoryId', (req, res) => {
   });
 });
 
-// Update "favorite" status on a tour
-app.patch('/api/listings/:id/tours/:tourId/:status', (req, res) => {
-  const tourId = req.params.tourId;
-  const newStatus = !req.params.status;
-  const sqlString = 'UPDATE tours SET favorite = ? WHERE id = ?';
-  db.query(sqlString, [newStatus, tourId], (err, results) => {
-    if (err) {
-      res.sendStatus(400);
-    } else {
-      res.sendStatus(201);
-    }
-  });
-});
+// // Update "favorite" status on a tour
+// app.patch('/api/listings/:id/tours/:tourId/:status', (req, res) => {
+//   const tourId = req.params.tourId;
+//   const newStatus = !req.params.status;
+//   const sqlString = 'UPDATE tours SET favorite = ? WHERE id = ?';
+//   db.query(sqlString, [newStatus, tourId], (err, results) => {
+//     if (err) {
+//       res.sendStatus(400);
+//     } else {
+//       res.sendStatus(201);
+//     }
+//   });
+// });
 
 app.listen(port, () => console.log(`listening on port ${port}`));

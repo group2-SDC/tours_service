@@ -58,6 +58,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      listingId: window.location.pathname.slice(1, (window.location.pathname.length - 1)),
       view: 0,
       dataLoaded: false,
       tabs: [],
@@ -89,7 +90,7 @@ class App extends React.Component {
 
   createRecommendedTab() {
     return new Promise((resolve, reject) => {
-      this.fetchRecommendedTours(this.props.listingId)
+      this.fetchRecommendedTours(this.state.listingId)
         .then(recommendedTours => {
           const recTab = {
             name: 'Recommended',
@@ -107,7 +108,7 @@ class App extends React.Component {
   createCategoryTabs(categories) {
       const categoryPromises = categories.map(category => {
         return new Promise((resolve, reject) => {
-          this.fetchToursByCategory(this.props.listingId, category.id)
+          this.fetchToursByCategory(this.state.listingId, category.id)
             .then(toursForCategory => {
               category.items = toursForCategory.data;
               category.displayMax = 4;
@@ -129,7 +130,7 @@ class App extends React.Component {
     };
     this.createRecommendedTab()
       .then(recTab => populatedTabs.push(recTab))
-      .then(() => this.fetchCategories(this.props.listingId))
+      .then(() => this.fetchCategories(this.state.listingId))
       .then(categories => {
         const topCategories = categories.data.slice(0, 4);
         browseTab.items = categories.data.slice(4);
