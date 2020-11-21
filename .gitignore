@@ -13,4 +13,7 @@ coverage
 ##bashScripts
 *.sh
 
+##mysqlLogin
+database/mysql.js
+
 
