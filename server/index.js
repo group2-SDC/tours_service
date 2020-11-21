@@ -11,8 +11,8 @@ app.use(morgan('dev'));
 app.use('/:listing_id', express.static('public'));
 
 // Retrieve all tour categories for a listing, in order of how many tours fall under that category
-app.get('/api/listings/:id/tours/categories', (req, res) => {
-  const listingId = req.params.id;
+app.get('/api/listings/:listing_id/tours/categories', (req, res) => {
+  const listingId = req.params.listing_id;
   const sqlCount = 'SELECT COUNT(tours.categories_id) AS tourCount, categories.* from tours, categories WHERE tours.categories_id = categories.id AND listings_id = ? GROUP BY categories_id ORDER BY COUNT(tours.categories_id) DESC';
   db.query(sqlCount, [listingId], (err, categories) => {
     if (err) {
@@ -44,8 +44,8 @@ app.get('/api/listings/:id/tours/categories', (req, res) => {
 });
 
 // Retrieve the top 8 "recommended" tours, of any category (tours with the most number of bookings)
-app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
-  const listingId = req.params.id;
+app.get('/api/listings/:listing_id/tours/categories/recommended', (req, res) => {
+  const listingId = req.params.listing_id;
   const sqlString = 'SELECT tours.id AS id, tours.name AS name, tours.*, categories.name AS categories_name FROM tours, categories WHERE tours.listings_id = ? AND categories.id = tours.categories_id ORDER BY tours.bookings DESC LIMIT 8';
   db.query(sqlString, [listingId], (err, tours) => {
     if (err) {
@@ -77,9 +77,9 @@ app.get('/api/listings/:id/tours/categories/recommended', (req, res) => {
 });
 
 // Retrieve the top 8 tours per category (in order of number of bookings)
-app.get('/api/listings/:id/tours/categories/:categoryId', (req, res) => {
-  const listingId = req.params.id;
-  const categoryId = req.params.categoryId;
+app.get('/api/listings/:listing_id/tours/categories/:category_id', (req, res) => {
+  const listingId = req.params.listing_id;
+  const categoryId = req.params.category_id;
   const sqlString = 'SELECT tours.id AS id, tours.name AS name, tours.*, categories.name AS categories_name FROM tours, categories WHERE tours.listings_id = ? AND categories.id = tours.categories_id AND categories.id = ? ORDER BY tours.bookings DESC LIMIT 8';
   db.query(sqlString, [listingId, categoryId], (err, tours) => {
     if (err) {
