@@ -1,3 +1,16 @@
+##Node
 node_modules
+
+##Webpack
 public/bundle.js
+
+##Testing
 coverage
+
+##keyFiles
+*.pem
+
+##bashScripts
+*.sh
+
+
