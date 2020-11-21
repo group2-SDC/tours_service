@@ -1,4 +1,4 @@
-const login = require('mysql.js');
+const login = require('./mysql.js');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
