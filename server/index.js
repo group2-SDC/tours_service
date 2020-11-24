@@ -8,7 +8,7 @@ const Promise = require('bluebird');
 
 app.use(morgan('dev'));
 
-app.use('/:listing_id', express.static('public'));
+app.use('/:listing_id', express.static(path.resolve(__dirname, '..', 'public')));
 
 // Retrieve all tour categories for a listing, in order of how many tours fall under that category
 app.get('/api/listings/:listing_id/tours/categories', (req, res) => {
