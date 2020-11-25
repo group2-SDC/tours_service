@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
+    background-color: #f2f2f2;
   }
   button {
     font-family: 'Poppins', sans-serif;
@@ -38,6 +39,10 @@ const Container = styled.div`
   margin: auto;
 `
 
+const TabsAndDisplayContainer = styled.div`
+  background-color: white;
+`
+
 const Overlay = styled.div`
   width: 100%;
   height: 100%;
@@ -47,7 +52,7 @@ const Overlay = styled.div`
 `
 Overlay.displayName = 'Overlay';
 
-const Heading = styled.span`
+const Heading = styled.div`
   font-size: 26px;
   font-weight: 500;
   margin: 20px 0;
@@ -174,20 +179,22 @@ class App extends React.Component {
         <GlobalStyle showModal={this.state.showModal}/>
         {this.state.showModal ? <Overlay /> : null}
         <Container>
-          {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
           <Heading>Get the full experience and book a tour</Heading>
-          <TabBar
-            tabs={this.state.tabs}
-            currentTab={this.state.view}
-            updateView={this.updateView}
-          />
-          {this.state.dataLoaded ?
-            <Display
-              tab={this.state.tabs[this.state.view]}
-              showAllItems={this.showAllItems}
-              toggleModal={this.toggleModal}
+          {this.state.showModal ? <Modal item={this.state.currentItem} toggleModal={this.toggleModal}/> : null}
+          <TabsAndDisplayContainer>
+            <TabBar
+              tabs={this.state.tabs}
+              currentTab={this.state.view}
+              updateView={this.updateView}
             />
-          : null}
+            {this.state.dataLoaded ?
+              <Display
+                tab={this.state.tabs[this.state.view]}
+                showAllItems={this.showAllItems}
+                toggleModal={this.toggleModal}
+              />
+            : null}
+          </TabsAndDisplayContainer>
         </Container>
       </BodyContainer>
     );
