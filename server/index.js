@@ -1,3 +1,4 @@
+const compression = require('compression');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -7,6 +8,8 @@ const port = 3002;
 const Promise = require('bluebird');
 
 app.use(morgan('dev'));
+
+app.use(compression());
 
 app.use('/:listing_id', express.static(path.resolve(__dirname, '..', 'public')));
 
