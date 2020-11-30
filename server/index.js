@@ -11,7 +11,13 @@ app.use(morgan('dev'));
 
 app.use(compression());
 
-app.use('/:listing_id', express.static(path.resolve(__dirname, '..', 'public')));
+var options = {
+  setHeaders: (res, path, stat) => { 
+    res.set('Cache-Control', 'max-age=31536000');
+  }
+};
+
+app.use('/:listing_id', express.static(path.resolve(__dirname, '..', 'public'), options));
 
 // Retrieve all tour categories for a listing, in order of how many tours fall under that category
 app.get('/api/listings/:listing_id/tours/categories', (req, res) => {
