@@ -1,9 +1,8 @@
-const login = require('./mysql.js');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: login.user,
-  password: login.password,
+  user: 'root',
+  password: '',
   database: 'tripTours'
 });
 

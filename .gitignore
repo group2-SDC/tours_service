@@ -16,4 +16,6 @@ coverage
 ##mysqlLogin
 database/mysql.js
 
-
+./server/index.js
+database/index.js
+*.csv
