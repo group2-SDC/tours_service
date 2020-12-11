@@ -97,7 +97,10 @@ const listings = 100;
 const categories = 12;
 const tours = 5000;
 
-generateListings(listings)
+generateLocations(locations)
+  .then(() => {
+    generateListings(listings)
+  })
   .then(() => {
     generateCategories(categories);
   })

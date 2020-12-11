@@ -1,0 +1,46 @@
+Data {
+  Listing
+  Listing {
+    top 8 bookings
+    top 8 category1
+    top 8 category2
+    ID
+    Name
+    Categories {
+      category1
+      category2 {
+        ID
+        Name
+        Description
+        Tours {
+          tour1
+          tour2 {
+            ID
+            Name
+            Description
+            price
+            ----booking----
+            languages {
+              language1
+              language2
+          }
+          }
+        }
+      }
+    }
+
+
+
+Data {
+  All Listings {
+    listings
+  }
+  category {
+    category {
+      lisingID
+    }
+  }
+
+}
+
+
