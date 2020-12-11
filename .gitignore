@@ -1,5 +1,6 @@
 ##Node
 node_modules
+database/dbpass.js
 
 ##Webpack
 public/bundle.js
