@@ -2,14 +2,19 @@ const fs = require('fs');
 const faker = require('faker');
 const argv = require('yargs').argv;
 
-const lines = argv.lines || 1000000;
+const lines = argv.lines || 30;
 const filename = argv.output || 'pgCategoriesData.csv';
 const stream = fs.createWriteStream(filename);
 
+let j = 1;
 const categoryGen = () => {
+  const id = j;
   const name = faker.commerce.department() + ' & ' + faker.commerce.department();
   const description = faker.company.catchPhrase().slice(0, 40);
-  return `${name},${description}\n`;
+  j++;
+  const randomPhotoNumber = Math.ceil((Math.random() * 500)).toString().padStart(3, 0);
+  const photo = `https://sdc-tours.s3-us-west-2.amazonaws.com/photo${randomPhotoNumber}.jpg`;
+  return `${id}|${name}|${description}|${photo}\n`;
 }
 
 const startWriting = (writeStream, encoding, done) => {
@@ -23,7 +28,7 @@ const startWriting = (writeStream, encoding, done) => {
         writeStream.write(category, encoding, done);
       } else {
         writeStream.write(category, encoding);
-        if (i === 99) {
+        if (i === 29) {
           console.log('At 0%')
         } else if (i === 1) {
           console.log('1 entry left!')
@@ -39,7 +44,7 @@ const startWriting = (writeStream, encoding, done) => {
   writing()
 }
 
-stream.write(`name,description\n`, 'utf-8')
+stream.write(`id|name|description|photo\n`, 'utf-8')
 startWriting(stream, 'utf-8', () => {
   stream.end()
 })

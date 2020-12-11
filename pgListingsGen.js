@@ -2,14 +2,18 @@ const fs = require('fs');
 const faker = require('faker');
 const argv = require('yargs').argv;
 
-const lines = argv.lines || 1000000;
+const lines = argv.lines || 10000000;
 const filename = argv.output || 'pgListingsData.csv';
 const stream = fs.createWriteStream(filename);
 
-const listingGen = () => {
-  const location_id = faker.random.number(100000);
+let j = 1;
 
-  return `${location_id}\n`;
+const listingGen = () => {
+  const id = j;
+  const location_id = faker.random.number({ 'min': 1, 'max': 1000});
+  j++;
+
+  return `${id}|${location_id}\n`;
 }
 
 const startWriting = (writeStream, encoding, done) => {
@@ -39,7 +43,7 @@ const startWriting = (writeStream, encoding, done) => {
   writing()
 }
 
-stream.write(`location_id\n`, 'utf-8')
+stream.write(`id|location_id\n`, 'utf-8')
 startWriting(stream, 'utf-8', () => {
   stream.end()
 })

@@ -1,16 +1,15 @@
-DROP DATABASE IF EXISTS tours_component;
+DROP DATABASE IF EXISTS tours;
 
-CREATE DATABASE tours_component;
+CREATE DATABASE tours;
 
-\c tours_component;
+\c tours;
 
 CREATE TABLE IF NOT EXISTS locations (
-  id SERIAL PRIMARY KEY,
-  avail_categories SMALLINT[]
+  id INTEGER PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS listings (
-  id SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   location_id SMALLINT,
   CONSTRAINT fk_location
     FOREIGN KEY (location_id)
@@ -18,13 +17,25 @@ CREATE TABLE IF NOT EXISTS listings (
 );
 
 CREATE TABLE IF NOT EXISTS categories (
-  id SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR,
-  description VARCHAR
+  description VARCHAR,
+  photo VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS location_categories (
+  location_id SMALLINT,
+  CONSTRAINT fk_location
+    FOREIGN KEY (location_id)
+      REFERENCES locations(id),
+  category_id SMALLINT,
+  CONSTRAINT fk_category
+    FOREIGN KEY (category_id)
+       REFERENCES categories(id)
 );
 
 CREATE TABLE IF NOT EXISTS tours (
-  id SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR,
   company VARCHAR,
   description VARCHAR,
@@ -39,10 +50,10 @@ CREATE TABLE IF NOT EXISTS tours (
   reviews SMALLINT,
   avg_rating DECIMAL(10, 2),
   bookings SMALLINT,
-  languages VARCHAR[],
+  languages VARCHAR,
   favorite SMALLINT,
-  photo VARCHAR(500),
-  map VARCHAR(500),
+  photo VARCHAR,
+  map VARCHAR,
   category_id SMALLINT,
   CONSTRAINT fk_category
     FOREIGN KEY (category_id)
@@ -52,3 +63,11 @@ CREATE TABLE IF NOT EXISTS tours (
     FOREIGN KEY (location_id)
       REFERENCES locations(id)
 );
+
+\COPY categories from 'pgCategoriesData.csv' delimiter '|' csv header;
+\COPY locations from 'pgLocationsData.csv' delimiter '|' csv header;
+\COPY listings from 'pgListingsData.csv' delimiter '|' csv header;
+\COPY location_categories from 'pgLocation_CategoriesData.csv' delimiter '|' csv header;
+\COPY tours from 'pgToursData.csv' delimiter '|' csv header;
+
+create index bookings_index ON tours (bookings DESC);
