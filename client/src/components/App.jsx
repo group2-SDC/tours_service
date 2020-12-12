@@ -149,7 +149,7 @@ class App extends React.Component {
           dataLoaded: true
         });
       })
-      .catch(err => console.log(err));     
+      .catch(err => console.log(err));
   }
 
   updateView(newTab) {

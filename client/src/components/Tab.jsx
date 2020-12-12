@@ -31,12 +31,12 @@ const Tab = (props) => {
       name={props.name}
       onClick={handleClick}
     >
-      {props.name !== 'Browse' ? 
+      {props.name !== 'Browse' ?
         <span>
           <StyledSpan>{props.name}</StyledSpan> <br />
           {props.description}
         </span>
-        : 
+        :
         <StyledSpan>
           ... <br />
           {props.name} <br />
