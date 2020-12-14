@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const newRelic = require('newrelic');
 const pool = require('../database/index2.js')
-const PORT = 3003;
+const PORT = 3002;
 
 
 var options = {
@@ -27,7 +28,7 @@ app.get('/api/listings/:listing_id/tours/categories', async (req, res) => {
 
 app.get('/api/listings/:listing_id/tours/categories/recommended', async (req, res) => {
   const queryArg = [req.params.listing_id];
-  const queryStr = 'select tours.id,tours.name,tours.company,tours.description,tours.days,tours.hours,tours.days,tours.hours,tours.minutes,tours.base_price,tours.free_cancel,tours.evoucher_accepted,tours.instant_confirm,tours.hotel_pickup,tours.reviews,tours.reviews,tours.avg_rating,tours.bookings,tours.languages,tours.favorite,tours.photo,tours.map,tours.category_id,tours.location_id from tours inner join listings on listings.location_id = tours.location_id where listings.id = $1 order by bookings desc limit 8'
+  const queryStr = 'select tours.id,tours.name,tours.company,tours.description,tours.days,tours.hours,tours.days,tours.hours,tours.minutes,tours.base_price,tours.free_cancel,tours.evoucher_accepted,tours.instant_confirm,tours.hotel_pickup,tours.reviews,tours.reviews,tours.avg_rating,tours.bookings,tours.languages,tours.favorite,tours.photo,tours.map,tours.category_id,tours.location_id from tours inner join listings on listings.location_id = tours.location_id where listings.id = $1 limit 8'
   try {
     const { rows } = await pool.query(queryStr, queryArg);
     res.send(rows);

@@ -97,11 +97,12 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       this.fetchRecommendedTours(this.state.listingId)
         .then(recommendedTours => {
+          const recs = recommendedTours.data.sort((a, b) => (a.bookings < b.bookings) ? 1: -1);
           const recTab = {
             name: 'Recommended',
             description: 'Our most popular tours and activities',
             displayMax: 4,
-            items: recommendedTours.data,
+            items: recs,
             showAll: false
           }
           resolve(recTab);

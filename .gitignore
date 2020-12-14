@@ -3,6 +3,7 @@ node_modules
 database/dbpass.js
 database/maps
 database/photos
+newrelic.js
 
 ##Webpack
 public/bundle.js

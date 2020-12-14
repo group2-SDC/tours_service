@@ -119,18 +119,18 @@
 //   });
 // });
 
-// // // Update "favorite" status on a tour
-// // app.patch('/api/listings/:id/tours/:tourId/:status', (req, res) => {
-// //   const tourId = req.params.tourId;
-// //   const newStatus = !req.params.status;
-// //   const sqlString = 'UPDATE tours SET favorite = ? WHERE id = ?';
-// //   db.query(sqlString, [newStatus, tourId], (err, results) => {
-// //     if (err) {
-// //       res.sendStatus(400);
-// //     } else {
-// //       res.sendStatus(201);
-// //     }
-// //   });
-// // });
+// // Update "favorite" status on a tour
+// app.patch('/api/listings/:id/tours/:tourId/:status', (req, res) => {
+//   const tourId = req.params.tourId;
+//   const newStatus = !req.params.status;
+//   const sqlString = 'UPDATE tours SET favorite = ? WHERE id = ?';
+//   db.query(sqlString, [newStatus, tourId], (err, results) => {
+//     if (err) {
+//       res.sendStatus(400);
+//     } else {
+//       res.sendStatus(201);
+//     }
+//   });
+// });
 
 // app.listen(port, () => console.log(`listening on port ${port}`));
