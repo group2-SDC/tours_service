@@ -74,9 +74,9 @@ const ModalBody = (props) => (
       : null}
       <DetailRow>
         <DetailIcon><i className="fas fa-globe-americas"></i></DetailIcon>
-        Languages Offered: {props.item.langs_offered.map((langObj, i) => i === props.item.langs_offered.length - 1 ? `${langObj.language}` : `${langObj.language}, `)}
+        Languages Offered: {props.item.languages}
       </DetailRow>
-      {props.item.evoucher_accepted ? 
+      {props.item.evoucher_accepted ?
         <DetailRow>
           <DetailIcon><i className="fas fa-mobile-alt"></i></DetailIcon>
           Electronic Voucher Accepted
