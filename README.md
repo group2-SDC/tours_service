@@ -32,9 +32,10 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 
 <!-- Front End Demo -->
 ## Front End Demo
-
-<img src="./FrontEndImg1.png" width="200px" height="200px"/>
-<img src="./FrontEndImg2.png" width="200px" height="200px" display:"inline-block"/>
+<div>
+  <img src="./FrontEndImg1.png" width="300px" height="300px"/>
+  <img src="./FrontEndImg2.png" width="300px" height="300px"/>
+</div>
 
 <!-- Stress Tested And Scaled With -->
 ### Stress Tested And Scaled With
