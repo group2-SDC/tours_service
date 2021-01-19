@@ -1,51 +1,71 @@
-CREATE DATABASE tripTours;
+DROP DATABASE IF EXISTS tours;
 
-USE tripTours;
+CREATE DATABASE tours;
 
-CREATE TABLE listings (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(250)
+\c tours;
+
+CREATE TABLE IF NOT EXISTS locations (
+  id INTEGER PRIMARY KEY
 );
 
-CREATE TABLE categories (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30),
-  description VARCHAR(50)
+CREATE TABLE IF NOT EXISTS listings (
+  id INTEGER PRIMARY KEY,
+  location_id SMALLINT,
+  CONSTRAINT fk_location
+    FOREIGN KEY (location_id)
+      REFERENCES locations(id)
 );
 
-CREATE TABLE tours (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  company VARCHAR(100),
-  description VARCHAR(500),
-  days INT,
-  hours INT,
-  minutes INT,
-  base_price VARCHAR(10),
-  free_cancel INT,
-  evoucher_accepted INT,
-  instant_confirm INT,
-  hotel_pickup INT,
-  reviews INT,
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR,
+  description VARCHAR,
+  photo VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS location_categories (
+  location_id SMALLINT,
+  CONSTRAINT fk_location
+    FOREIGN KEY (location_id)
+      REFERENCES locations(id),
+  category_id SMALLINT,
+  CONSTRAINT fk_category
+    FOREIGN KEY (category_id)
+       REFERENCES categories(id)
+);
+
+CREATE TABLE IF NOT EXISTS tours (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR,
+  company VARCHAR,
+  description VARCHAR,
+  days SMALLINT,
+  hours SMALLINT,
+  minutes SMALLINT,
+  base_price VARCHAR,
+  free_cancel SMALLINT,
+  evoucher_accepted SMALLINT,
+  instant_confirm SMALLINT,
+  hotel_pickup SMALLINT,
+  reviews SMALLINT,
   avg_rating DECIMAL(10, 2),
-  bookings INT,
-  favorite INT,
-  photo VARCHAR(500),
-  map VARCHAR(500),
-  listings_id INT,
-  categories_id INT,
-  FOREIGN KEY (listings_id) REFERENCES listings(id),
-  FOREIGN KEY (categories_id) REFERENCES categories(id)
+  bookings SMALLINT,
+  languages VARCHAR,
+  favorite SMALLINT,
+  photo VARCHAR,
+  map VARCHAR,
+  category_id SMALLINT,
+  CONSTRAINT fk_category
+    FOREIGN KEY (category_id)
+       REFERENCES categories(id),
+  location_id SMALLINT,
+  CONSTRAINT fk_location
+    FOREIGN KEY (location_id)
+      REFERENCES locations(id)
 );
 
-CREATE TABLE languages (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  language VARCHAR(100)
-);
-
-CREATE TABLE tours_languages (
-  tours_id INT,
-  languages_id INT,
-  FOREIGN KEY (tours_id) REFERENCES tours(id),
-  FOREIGN KEY (languages_id) REFERENCES languages(id)
-);
+\COPY categories from 'pgCategoriesData.csv' delimiter '|' csv header;
+\COPY locations from 'pgLocationsData.csv' delimiter '|' csv header;
+\COPY listings from 'pgListingsData.csv' delimiter '|' csv header;
+\COPY location_categories from 'pgLocation_CategoriesData.csv' delimiter '|' csv header;
+\COPY tours from 'pgToursData.csv' delimiter '|' csv header;

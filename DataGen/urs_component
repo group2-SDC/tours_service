@@ -1,7 +1,0 @@
- postgres        | postgres | UTF8     | C       | C     | 
- template0       | postgres | UTF8     | C       | C     | =c/postgres          +
-                 |          |          |         |       | postgres=CTc/postgres
- template1       | postgres | UTF8     | C       | C     | =c/postgres          +
-                 |          |          |         |       | postgres=CTc/postgres
- tours_component | postgres | UTF8     | C       | C     | 
-

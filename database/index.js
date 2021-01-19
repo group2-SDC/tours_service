@@ -1,17 +1,18 @@
-// const mysql = require('mysql');
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'tripTours'
-// });
+const { Pool } = require('pg');
+const pass = require('./dbpass.js')
 
-// connection.connect(err => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log('mysql connection success');
-//   }
-// });
+const pool = new Pool({
+  user: pass.user,
+  database: pass.database,
+  password: pass.password
+})
 
-// module.exports = connection;
+pool.connect()
+  .then(success => {
+    console.log('connected to db');
+  })
+  .catch (err => {
+    console.log('could not connect to db err: ', err);
+  })
+
+module.exports = pool;

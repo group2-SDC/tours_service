@@ -4,6 +4,8 @@ database/dbpass.js
 database/maps
 database/photos
 newrelic.js
+newrelic_agent.log
+seed.txt
 
 ##Webpack
 public/bundle.js
