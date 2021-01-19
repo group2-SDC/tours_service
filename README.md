@@ -25,7 +25,7 @@
 <!-- About the project -->
 ## About The Project
 
-In this project, I worked with a team of engineers in designing a complex backend system for a legacy codebase to prepare the service for production level traffic. I worked on scaling the tours component of the service which enabled the user to view the most popular tours for their destination and sort through them with a variety of categories. I have provided a demo of the legacy front-end to give a better description of the component.
+In this project, I worked with a team of engineers in designing a complex backend system for a legacy codebase to prepare the service for production level traffic. I worked on scaling the tours component of the service which enabled the user to view the most popular tours for their destination and sort through them with a variety of categories. I have provided a demo of the legacy front-end to give a better description of the component. As I was working with the backend, the folders I did the majority of the work in are in the database, dataGen, server, and some work on the client with small front-end refactors. 
 
 In order to scale the component, I began by performing multiple stress tests to simulate high user traffic using Loader.io and monitored my response information using New Relic. After recording the initial maximum load of the component, I proceeded to horizontally scale my service using an NGINX load balancer and also vertically scale my database. In the end, I was able to increase the servers maximum requests per minute by 760% to 114,000. My methods for this are explained in greater detail in the Designing The Backend section.
 
