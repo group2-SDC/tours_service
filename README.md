@@ -40,9 +40,9 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 <!-- Related Projects -->
 ### Related Projects
 
-* [Slam Dunk Supplies Related Items](https://github.com/Slam-Dunk-Supplies/related-items)
-* [Slam Dunk Supplies Checkout](https://github.com/Slam-Dunk-Supplies/add-to-bag)
-* [Slam Dunk Supplies Reviews](https://github.com/Slam-Dunk-Supplies/customer-reviews)
+* [Trips Ahoy Q&A](https://github.com/trips-ahoy/qa)
+* [Trips Ahoy Reviews](https://github.com/trips-ahoy/reviews_service)
+* [Trips Ahoy Gallery](https://github.com/trips-ahoy/topdescription-service)
 
 <!-- Designing the Backend -->
 ## Designing the Backend
