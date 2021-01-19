@@ -1,6 +1,5 @@
 ##Node
 node_modules
-database/dbpass.js
 database/maps
 database/photos
 newrelic.js
