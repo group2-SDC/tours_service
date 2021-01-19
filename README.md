@@ -40,13 +40,12 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 <!-- Stress Tested And Scaled With -->
 ### Stress Tested And Scaled With
 
-* [React](https://reactjs.org)
-* [Express](http://expressjs.com/)
-* [Axios](https://www.npmjs.com/package/axios)
-* [Styled Components](https://styled-components.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [AWS S3](https://aws.amazon.com/s3/)
-* [Jest](https://jestjs.io/)
+* [PostgresSQL](https://www.postgresql.org/)
+* [k6](https://k6.io/)
+* [New Relic](https://newrelic.com/)
+* [Loader.io](https://loader.io/)
+* [NGINX Load Balancer](https://www.nginx.com/?_ga=2.158389434.1677834339.1611021376-367796849.1611021376)
+* [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc)
 
 
 <!-- CONTACT -->
