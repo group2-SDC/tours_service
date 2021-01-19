@@ -15,9 +15,9 @@
         <li><a href="#choosing-a-database">Choosing A Database</a></li>
         <li><a href="#stress-testing-locally">Stress Testing Locally</a></li>
         <li><a href="#stress-testing-and-scaling-deployed-service">Stress Testing And Scaling Deployed Service</a></li>
-        <li><a href="#results">Results</a></li>      
       </ul>
     </li>
+    <li><a href="#results">Results</a></li> 
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -59,7 +59,7 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 ### Stress Testing And Scaling Deployed Service
 
 <!-- Results -->
-### Results
+## Results
 
 <!-- CONTACT -->
 ## Contact
