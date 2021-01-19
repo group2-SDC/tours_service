@@ -6,6 +6,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
        <li><a href="#front-end-demo">Front End Demo</a></li>
+       <li><a href="#related-projects">Related Projects</a></li>      
       </ul>
     </li>
     <li>
@@ -35,6 +36,13 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 ### Front End Demo
 
 ![til](./TripsAhoyToursService.gif)
+
+<!-- Related Projects -->
+### Related Projects
+
+* [Slam Dunk Supplies Related Items](https://github.com/Slam-Dunk-Supplies/related-items)
+* [Slam Dunk Supplies Checkout](https://github.com/Slam-Dunk-Supplies/add-to-bag)
+* [Slam Dunk Supplies Reviews](https://github.com/Slam-Dunk-Supplies/customer-reviews)
 
 <!-- Designing the Backend -->
 ## Designing the Backend
