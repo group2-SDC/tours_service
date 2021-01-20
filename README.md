@@ -13,6 +13,7 @@
       <a href="#Designing-the-backend">Designing The Backend</a>
       <ul>
         <li><a href="#stress-tested-and-scaled-with">Stress Tested And Scaled With</a></li>
+        <li><a href="#dataset-breakdown">Dataset Breakdown</a></li>        
         <li><a href="#choosing-a-database">Choosing A Database</a></li>
         <li><a href="#stress-testing-locally">Stress Testing Locally</a></li>
         <li><a href="#stress-testing-and-scaling-deployed-service">Stress Testing And Scaling Deployed Service</a></li>
@@ -35,7 +36,7 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 <!-- Front End Demo -->
 ### Front End Demo
 
-![til](./TripsAhoyToursService.gif)
+![til](./readMeMedia/TripsAhoyToursService.gif)
 
 <!-- Related Projects -->
 ### Related Projects
@@ -57,9 +58,27 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 * [NGINX Load Balancer](https://www.nginx.com/?_ga=2.158389434.1677834339.1611021376-367796849.1611021376)
 * [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc)
 
+
+
 <!-- Choosing A Database -->
 ### Choosing A Database
 
+In choosing a database for my component, scalability was very important and with this consideration in mind, I narrowed my choices to two databases a SQL database (Postgres) and a NOSQL database (Cassandra). In order to decide between the two, I proceeded to benchmark the two databases once they were seeded with the 10 million database entries and recorded the average non-cached response time at each of the 3 endpoints at a given listing ID. These listing IDs were distributed evenly throughout the dataset with 5 tested each at the first 10%, middle 10%, and last 10% portion of the dataset per endpoint for each database. Results are shown in the table below. 
+
+<img src="./readMeMedia/DatabaseT1.png"/>
+<h6 align="center">Table 1. Database Benchmark </h6>
+
+My results for the benchmark favored postgres and this was most likely due to relational nature of the queries I performed (describe in Dataset Breakdown).
+
+<!-- Dataset Breakdown -->
+### Dataset Breakdown
+
+In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so: 
+* Listings Table: Contains 10 million listing IDs and the location ID assoicated to that listing ID
+* Locations Table: Contains 1000 Location IDs 
+* Categories Table: Contains 30 category IDs and the category information associated to that category ID (i.e. name, location ID)
+* Location-Categories Table: Contains relation of which category IDs are available at a given Location ID
+* Tours Table: Contains 10 million tours and the tours information associated to that tour (i.e. category ID, location ID)
 <!-- Stress Testing Locally -->
 ### Stress Testing Locally
 
