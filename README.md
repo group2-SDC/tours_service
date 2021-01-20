@@ -79,6 +79,7 @@ In the dataset, there are 10 million records that contain the tour information f
 * Categories Table: Contains 30 category IDs and the category information associated to that category ID (i.e. name, location ID)
 * Location-Categories Table: Contains relation of which category IDs are available at a given Location ID
 * Tours Table: Contains 10 million tours and the tours information associated to that tour (i.e. category ID, location ID)
+
 <!-- Stress Testing Locally -->
 ### Stress Testing Locally
 
@@ -100,5 +101,4 @@ In the dataset, there are 10 million records that contain the tour information f
 <a href="mailto:cetino-e@hotmail.com">
   <img src="https://img.shields.io/badge/EMAIL-cetino--e%40hotmail.com-1152ba?style=for-the-badge"/>
 </a>
-
 
