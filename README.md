@@ -74,7 +74,7 @@ In the dataset, there are 10 million records that contain the tour information f
 
 <div align="center">
   <img src="./readMeMedia/DatabaseT2.png"/>
-  <h6> align="center" Table 2. Postgres Schema </h6>
+  <h6 align="center">  Table 2. Postgres Schema </h6>
 </div>
 
 The relation of the the data is as follows:
@@ -88,7 +88,7 @@ The relation of the the data is as follows:
 
 <div align="center">
   <img  src="./readMeMedia/DatabaseT3.png"/>
-  <h6 text-align="center">Table 3. Backend Structure</h6>
+  <h6 align="center">Table 3. Backend Structure</h6>
 </div>
 
 After I got my postgres database and service server deployed on EC2, I went on to hook my service server to a NGINX load balancer and began testing the stress testing it while connected to a single service. I used a testing software called Loader io in order to simulate high traffic and increased traffic by 50 requests per second (rps) until my response time from the server exceeded 2s or my error rate passed 1%. Once that happened, I recorded the maximum rps that the service could handle before passing the minimum requirements and then added another service and began stress testing starting at the previous max rps and went on until no change/very minimal change was recorded across all endpoints. My results for the horizontal scaling of my database are shown in the table below and as you will see there was a large difference in the performance across the 3 endpoints with the best performing endpoint starting at 450 rps and then reaching 1250 rps when scaled to 4 services while my worst performing endpoint started at 250 rps and bottlenecked at 300 rps with only 2 services. 
