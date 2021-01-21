@@ -89,7 +89,7 @@ The relation of the the data is as follows:
 
 <div align="center">
   <img  src="./readMeMedia/DatabaseT3.png"/>
-  <h6 align="center">Table 3. Server Structure</h6>
+  <h6 text-align="center">Table 3. Server Structure</h6>
 </div>
 
 <div align="center">
