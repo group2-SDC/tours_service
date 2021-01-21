@@ -71,18 +71,13 @@ My results for the benchmark favored postgres and this was most likely due to re
 <!-- Dataset Breakdown -->
 ### Dataset Breakdown
 
-In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so:
-
-* Listings Table: Contains 10 million listing IDs and the location ID assoicated to that listing ID
-* Locations Table: Contains 1000 Location IDs 
-* Categories Table: Contains 30 category IDs and the category information associated to that category ID (i.e. name, location ID)
-* Location-Categories Table: Contains relation of which category IDs are available at a given Location ID
-* Tours Table: Contains 10 million tours and the tours information associated to that tour (i.e. category ID, location ID)
+In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables and organized using the following schema.
 
 <div align="center">
   <img src="./readMeMedia/DatabaseT2.png"/>
   <h6 align="center">Table 2. Postgres Schema </h6>
 </div>
+
 The relation of the the data is as follows:
 * Each listing ID has 1 location ID
 * Each location ID has 11-16 category IDs assigned to it
