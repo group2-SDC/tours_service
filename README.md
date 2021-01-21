@@ -63,7 +63,7 @@ In choosing a database for my component, scalability was very important and with
 
 <div align="left">
   <img src="./readMeMedia/DatabaseT1.png"/>
-  <h6 align="center">Table 1. Database Benchmark </h6>
+  <h6 align="left">Table 1. Database Benchmark </h6>
 </div>
 
 My results for the benchmark favored postgres and this was most likely due to relational nature of the queries I performed (describe in Dataset Breakdown). In postgres I was able to perform one complex query to get the data needed but this was not possible with a single query for cassandra and requried 2 separate queries to get all the information I needed. Looking at how both databases scale, Cassandra is a great option as it was built with scalability in mind but Postgres is a good option too with it's streaming replication feature which spreads queries to multiple read only replicas and since my endpoints are all get request and not post requests this is a good option as well. In the end, I choose to go with Postgres because of its better reponse time and because it could scale easily.
@@ -74,7 +74,7 @@ My results for the benchmark favored postgres and this was most likely due to re
 In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so:
 
 <div align="left">
-  <img align="center" src="./readMeMedia/DatabaseT2.png"/>
+  <img src="./readMeMedia/DatabaseT2.png"/>
   <h6 align="center">Table 2. Postgres Schema </h6>
 </div>
 
