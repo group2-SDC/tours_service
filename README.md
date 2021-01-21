@@ -73,9 +73,9 @@ My results for the benchmark favored postgres and this was most likely due to re
 
 In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables and organized using the following schema.
 
-<div align="center">
+<div align="left">
   <img src="./readMeMedia/DatabaseT2.png"/>
-  <h6 align="center">Table 2. Postgres Schema </h6>
+  <h6>Table 2. Postgres Schema </h6>
 </div>
 
 The relation of the the data is as follows:
