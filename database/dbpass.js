@@ -1,8 +1,8 @@
 const pass = {
-  user:'postgres', //postgres username
+  user:'fill_in', //postgres username
   host: 'localhost',
   database: 'tours',
-  password: '5614', //postgres password
+  password: 'fill_in', //postgres password
   port: 5432
 }
 
