@@ -15,7 +15,6 @@
         <li><a href="#stress-tested-and-scaled-with">Stress Tested And Scaled With</a></li>
         <li><a href="#dataset-breakdown">Dataset Breakdown</a></li>        
         <li><a href="#choosing-a-database">Choosing A Database</a></li>
-        <li><a href="#stress-testing-locally">Stress Testing Locally</a></li>
         <li><a href="#stress-testing-and-scaling-deployed-service">Stress Testing And Scaling Deployed Service</a></li>
       </ul>
     </li>
@@ -52,13 +51,10 @@ Project Link: [https://github.com/trips-ahoy/tours-service](https://github.com/t
 ### Stress Tested And Scaled With
 
 * [PostgresSQL](https://www.postgresql.org/)
-* [k6](https://k6.io/)
 * [New Relic](https://newrelic.com/)
 * [Loader.io](https://loader.io/)
 * [NGINX Load Balancer](https://www.nginx.com/?_ga=2.158389434.1677834339.1611021376-367796849.1611021376)
 * [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc)
-
-
 
 <!-- Choosing A Database -->
 ### Choosing A Database
@@ -73,7 +69,10 @@ My results for the benchmark favored postgres and this was most likely due to re
 <!-- Dataset Breakdown -->
 ### Dataset Breakdown
 
-In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so: 
+In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so:
+<img src="./readMeMedia/DatabaseT2.png"/>
+<h6 align="center">Table 2. Postgres Schema </h6>
+
 * Listings Table: Contains 10 million listing IDs and the location ID assoicated to that listing ID
 * Locations Table: Contains 1000 Location IDs 
 * Categories Table: Contains 30 category IDs and the category information associated to that category ID (i.e. name, location ID)
@@ -89,6 +88,14 @@ The relation of the the data is as follows:
 <!-- Stress Testing And Scaling Deployed Service -->
 ### Stress Testing And Scaling Deployed Service
 
+<img src="./readMeMedia/DatabaseT3.png"/>
+<h6 align="center">Table 3. Server Structure </h6>
+
+<img src="./readMeMedia/DatabaseT4.png"/>
+<h6 align="center">Table 4. Horizontally Scaling Service Using Load Balancer </h6>
+
+<img src="./readMeMedia/DatabaseT5.png"/>
+<h6 align="center">Table 5. Vertically Scaling Database By Changing EC2 Instance Type</h6>
 <!-- Results -->
 ## Results
 
