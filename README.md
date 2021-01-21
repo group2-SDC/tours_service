@@ -70,8 +70,10 @@ My results for the benchmark favored postgres and this was most likely due to re
 ### Dataset Breakdown
 
 In the dataset, there are 10 million records that contain the tour information for the site. This information is spread out into 5 relational tables like so:
-<img align="center" src="./readMeMedia/DatabaseT2.png"/>
-<h6 align="center">Table 2. Postgres Schema </h6>
+<div align="center">
+  <img align="center" src="./readMeMedia/DatabaseT2.png"/>
+  <h6 align="center">Table 2. Postgres Schema </h6>
+</div>
 
 * Listings Table: Contains 10 million listing IDs and the location ID assoicated to that listing ID
 * Locations Table: Contains 1000 Location IDs 
@@ -87,15 +89,20 @@ The relation of the the data is as follows:
 
 <!-- Stress Testing And Scaling Deployed Service -->
 ### Stress Testing And Scaling Deployed Service
+<div align="center">
+  <img  src="./readMeMedia/DatabaseT3.png"/>
+  <h6 align="center">Table 3. Server Structure</h6>
+</div>
 
-<img align="center" src="./readMeMedia/DatabaseT3.png"/>
-<h6 align="center">Table 3. Server Structure </h6>
+<div align="center">
+  <img align="center" src="./readMeMedia/DatabaseT4.png"/>
+  <h6 align="center">Table 4. Horizontally Scaling Service Using Load Balancer </h6>
+  </div>
 
-<img align="center" src="./readMeMedia/DatabaseT4.png"/>
-<h6 align="center">Table 4. Horizontally Scaling Service Using Load Balancer </h6>
-
-<img align="center" src="./readMeMedia/DatabaseT5.png"/>
-<h6 align="center">Table 5. Vertically Scaling Database By Changing EC2 Instance Type</h6>
+<div align="center">
+  <img align="center" src="./readMeMedia/DatabaseT5.png"/>
+  <h6 align="center">Table 5. Vertically Scaling Database By Changing EC2 Instance Type</h6>
+</div>
 
 <!-- Results -->
 ## Results
